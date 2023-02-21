@@ -1,14 +1,12 @@
 <h2>Cara Login</h2>
-<ol>
-  <li> ![image](https://user-images.githubusercontent.com/58357765/220362878-dae62c35-d6dd-474e-a1da-28223a47e199.png)
-</li>
-  <li>![image](https://user-images.githubusercontent.com/58357765/220363094-2e22f977-3827-4e93-bc39-d05a03d906f1.png)
-  </li>
-  <li>![image](https://user-images.githubusercontent.com/58357765/220363190-4a969212-5721-4f14-aab5-b70f5d35674d.png)
-  </li>
-  <li>![image](https://user-images.githubusercontent.com/58357765/220363264-7c064d15-ea40-47f6-bf65-a853bb93bdb7.png)
-  </li>
-</ol>
+![image](https://user-images.githubusercontent.com/58357765/220363567-27e14dba-9e86-4403-871a-c44c7dc03bfb.png)
+![image](https://user-images.githubusercontent.com/58357765/220363639-cda50c3c-2ec3-4494-9689-2b97261490bd.png)
+![image](https://user-images.githubusercontent.com/58357765/220363678-e4870b2a-9e73-4ef5-b677-606f27343021.png)
+![image](https://user-images.githubusercontent.com/58357765/220363723-b0e1b084-1dc2-43b5-9d25-ff4eb16365c1.png)
+![image](https://user-images.githubusercontent.com/58357765/220363779-4046d54b-1bd4-40d9-adcb-18335e97bde2.png)
+![image](https://user-images.githubusercontent.com/58357765/220363827-6c028b8f-e0f4-4495-a28d-461446466322.png)
+
+
 
 <h2>Cara Login</h2>
 <ol>
