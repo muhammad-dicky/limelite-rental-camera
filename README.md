@@ -41,13 +41,13 @@ php index.php migrate
 
 **Langkah 5: Akses sebagai SuperAdmin atau Admin**
 
-- Akses area admin di `http://localhost/alwan/admin/auth/login`.
+- Akses area admin di `http://localhost/(nama folder kalian)/admin/auth/login`.
 - Gunakan akun SuperAdmin dengan email `superadmin@gmail.com` dan password `superadmin`.
 - Atau gunakan akun Admin dengan email `administrator@gmail.com` dan password `administrator`.
 
 **Langkah 6: Akses sebagai Customer Biasa dan Sudah Berlangganan Member**
 
-- Akses area frontend di `http://localhost/alwan/auth/login`.
+- Akses area frontend di `http://localhost/(nama folder kalian)/auth/login`.
 - Gunakan akun biasa dengan email `batistuta@gmail.com` dan password `asdfghjkl`.
 - Atau gunakan akun Admin dengan email `userpremium@gmail.com` dan password `asdfghjkl`.
 
