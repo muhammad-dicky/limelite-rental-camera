@@ -5,6 +5,7 @@ class Kontak_model extends CI_Model
   public $table = 'kontak';
   public $id    = 'id_kontak';
   public $order = 'DESC';
+  public $tablebukti = 'bukti';
 
   var $column = array('id_kontak','nama','nohp');
 
@@ -73,6 +74,11 @@ class Kontak_model extends CI_Model
   {
     return $this->db->get($this->table)->result();
   }
+  
+  function get_all_bukti()
+  {
+    return $this->db->get($this->tablebukti)->result();
+  }
 
   function get_by_id($id)
   {
@@ -100,6 +106,11 @@ class Kontak_model extends CI_Model
   {
     $this->db->where($this->id, $id);
     $this->db->delete($this->table);
+  }
+
+  function insert_bukti($data)
+  {
+    $this->db->insert($this->tablebukti, $data);
   }
 
 }

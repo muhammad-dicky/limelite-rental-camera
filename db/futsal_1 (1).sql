@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 21 Feb 2023 pada 12.27
--- Versi server: 10.4.27-MariaDB
--- Versi PHP: 8.0.25
+-- Generation Time: Mar 28, 2023 at 02:01 PM
+-- Server version: 10.4.27-MariaDB
+-- PHP Version: 8.0.25
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -24,7 +24,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `album`
+-- Table structure for table `album`
 --
 
 CREATE TABLE `album` (
@@ -39,7 +39,7 @@ CREATE TABLE `album` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
--- Dumping data untuk tabel `album`
+-- Dumping data for table `album`
 --
 
 INSERT INTO `album` (`id_album`, `nama_album`, `slug_album`, `foto`, `created_by`, `created_at`, `modified_by`, `modified_at`) VALUES
@@ -50,7 +50,7 @@ INSERT INTO `album` (`id_album`, `nama_album`, `slug_album`, `foto`, `created_by
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `bank`
+-- Table structure for table `bank`
 --
 
 CREATE TABLE `bank` (
@@ -62,7 +62,7 @@ CREATE TABLE `bank` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
--- Dumping data untuk tabel `bank`
+-- Dumping data for table `bank`
 --
 
 INSERT INTO `bank` (`id_bank`, `nama_bank`, `atas_nama`, `norek`, `logo`) VALUES
@@ -74,7 +74,31 @@ INSERT INTO `bank` (`id_bank`, `nama_bank`, `atas_nama`, `norek`, `logo`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `company`
+-- Table structure for table `bukti`
+--
+
+CREATE TABLE `bukti` (
+  `id` int(11) NOT NULL,
+  `name` varchar(50) NOT NULL,
+  `email` varchar(50) NOT NULL,
+  `subject` varchar(50) NOT NULL,
+  `message` varchar(50) NOT NULL,
+  `modified_at` date DEFAULT NULL,
+  `foto` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `bukti`
+--
+
+INSERT INTO `bukti` (`id`, `name`, `email`, `subject`, `message`, `modified_at`, `foto`) VALUES
+(27, 'userbiasa', 'userbiasa@gmail.com', 'konfirmasi pembayaran', '-', NULL, 'IMG_20200811_012313.jpg'),
+(28, 'userbiasa', 'userbiasa@gmail.com', 'konfirmasi pembayaran', '-', NULL, 'IMG_20200811_0123131.jpg');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `company`
 --
 
 CREATE TABLE `company` (
@@ -96,16 +120,16 @@ CREATE TABLE `company` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
--- Dumping data untuk tabel `company`
+-- Dumping data for table `company`
 --
 
 INSERT INTO `company` (`id_company`, `company_name`, `company_desc`, `company_address`, `company_maps`, `company_phone`, `company_phone2`, `company_fax`, `company_email`, `foto`, `foto_type`, `created`, `modified`, `created_by`, `modified_by`) VALUES
-(1, 'JAKAL 7 FUTSAL', 'memberikan kemudahan bagi anda untuk dapat melakukan pemesanan lapangan futsal secara online. Melalui situs ini, anda dapat melihat ketersediaan lapangan futsal sesuai dengan waktu yang diinginkan.', 'Jl. Kaliurang No.7,7, Ngabean Kulon, Sinduharjo, Kec. Ngaglik, Kabupaten Sleman, Daerah Istimewa Yogyakarta 55581', '<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d16327777.649419477!2d108.84621849858628!3d-2.415291213289622!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2c4c07d7496404b7%3A0xe37b4de71badf485!2sIndonesia!5e0!3m2!1sen!2sid!4v1506312173230\" width=\"100%\" height=\"200\" frameborder=\"0\" style=\"border:0\" allowfullscreen></iframe>', '087833181877', '0274880864', '13456', 'contoh@gmail.com', 'jakal-7-futsal20230122191217', '.png', '2023-01-03 00:00:00', NULL, 'superadmin', 'superadmin');
+(1, 'JAKAL 7 FUTSAL', 'memberikan kemudahan bagi anda untuk dapat melakukan pemesanan lapangan futsal secara online. Melalui situs ini, anda dapat melihat ketersediaan lapangan futsal sesuai dengan waktu yang diinginkan.', 'Jl. Kaliurang No.7,7, Ngabean Kulon, Sinduharjo, Kec. Ngaglik, Kabupaten Sleman, Daerah Istimewa Yogyakarta 55581', '<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d16327777.649419477!2d108.84621849858628!3d-2.415291213289622!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2c4c07d7496404b7%3A0xe37b4de71badf485!2sIndonesia!5e0!3m2!1sen!2sid!4v1506312173230\" width=\"100%\" height=\"200\" frameborder=\"0\" style=\"border:0\" allowfullscreen></iframe>', '087833181877', '0274880864', '13456', 'contoh@gmail.com', 'jakal-7-futsal20230122191217', '.png', '2023-01-03 00:00:00', NULL, 'amperakoding', 'superadmin');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `diskon`
+-- Table structure for table `diskon`
 --
 
 CREATE TABLE `diskon` (
@@ -114,7 +138,7 @@ CREATE TABLE `diskon` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
--- Dumping data untuk tabel `diskon`
+-- Dumping data for table `diskon`
 --
 
 INSERT INTO `diskon` (`id`, `harga`) VALUES
@@ -123,7 +147,7 @@ INSERT INTO `diskon` (`id`, `harga`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `event`
+-- Table structure for table `event`
 --
 
 CREATE TABLE `event` (
@@ -141,7 +165,7 @@ CREATE TABLE `event` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
--- Dumping data untuk tabel `event`
+-- Dumping data for table `event`
 --
 
 INSERT INTO `event` (`id_event`, `nama_event`, `slug_event`, `deskripsi`, `kategori`, `foto`, `foto_type`, `created_at`, `created_by`, `modified_at`, `modified_by`) VALUES
@@ -151,7 +175,7 @@ INSERT INTO `event` (`id_event`, `nama_event`, `slug_event`, `deskripsi`, `kateg
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `foto`
+-- Table structure for table `foto`
 --
 
 CREATE TABLE `foto` (
@@ -166,10 +190,18 @@ CREATE TABLE `foto` (
   `modified_at` datetime DEFAULT NULL ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
+--
+-- Dumping data for table `foto`
+--
+
+INSERT INTO `foto` (`id_foto`, `album_id`, `nama_foto`, `slug_foto`, `foto`, `created_by`, `created_at`, `modified_by`, `modified_at`) VALUES
+(10, 1, 'turnamen', 'turnamen', 'turnamen20230319113123.png', 'superadmin', '2023-03-19 11:31:30', '', NULL),
+(11, 5, 'lapangan', 'lapangan', 'lapangan20230319113347.jpg', 'superadmin', '2023-03-19 11:33:47', '', NULL);
+
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `jam`
+-- Table structure for table `jam`
 --
 
 CREATE TABLE `jam` (
@@ -179,7 +211,7 @@ CREATE TABLE `jam` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
--- Dumping data untuk tabel `jam`
+-- Dumping data for table `jam`
 --
 
 INSERT INTO `jam` (`id`, `jam`, `is_available`) VALUES
@@ -206,7 +238,7 @@ INSERT INTO `jam` (`id`, `jam`, `is_available`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `kategori`
+-- Table structure for table `kategori`
 --
 
 CREATE TABLE `kategori` (
@@ -220,7 +252,7 @@ CREATE TABLE `kategori` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
--- Dumping data untuk tabel `kategori`
+-- Dumping data for table `kategori`
 --
 
 INSERT INTO `kategori` (`id_kategori`, `nama_kategori`, `slug_kat`, `created_by`, `created_at`, `modified_by`, `modified_at`) VALUES
@@ -230,7 +262,7 @@ INSERT INTO `kategori` (`id_kategori`, `nama_kategori`, `slug_kat`, `created_by`
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `kontak`
+-- Table structure for table `kontak`
 --
 
 CREATE TABLE `kontak` (
@@ -244,7 +276,7 @@ CREATE TABLE `kontak` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
--- Dumping data untuk tabel `kontak`
+-- Dumping data for table `kontak`
 --
 
 INSERT INTO `kontak` (`id_kontak`, `nama_kontak`, `nohp`, `created_by`, `created_at`, `modified_by`, `modified_at`) VALUES
@@ -253,7 +285,7 @@ INSERT INTO `kontak` (`id_kontak`, `nama_kontak`, `nohp`, `created_by`, `created
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `kota`
+-- Table structure for table `kota`
 --
 
 CREATE TABLE `kota` (
@@ -263,7 +295,7 @@ CREATE TABLE `kota` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
--- Dumping data untuk tabel `kota`
+-- Dumping data for table `kota`
 --
 
 INSERT INTO `kota` (`id_kota`, `provinsi_id`, `nama_kota`) VALUES
@@ -772,7 +804,7 @@ INSERT INTO `kota` (`id_kota`, `provinsi_id`, `nama_kota`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `lapangan`
+-- Table structure for table `lapangan`
 --
 
 CREATE TABLE `lapangan` (
@@ -787,18 +819,18 @@ CREATE TABLE `lapangan` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
--- Dumping data untuk tabel `lapangan`
+-- Dumping data for table `lapangan`
 --
 
 INSERT INTO `lapangan` (`id_lapangan`, `nama_lapangan`, `harga`, `foto`, `created_by`, `created_at`, `modified_by`, `modified_at`) VALUES
-(1, 'Lapangan Futsal 1', 90, 'lapangan-120230221171043.jpg', 'superadmin', '2023-01-04 00:00:00', 'superadmin', '2023-02-21 17:11:03'),
-(2, 'Lapangan Futsal 2', 90, 'lapangan-futsal-220230221171257.jpg', 'superadmin', '2023-01-04 00:00:00', 'superadmin', '2023-02-21 17:12:57'),
-(6, 'Lapangan Basket 1', 110, 'lapangan-basket-120230221171334.jpg', 'superadmin', '2023-01-04 00:00:00', 'superadmin', '2023-02-21 17:13:35');
+(1, 'Lapangan Futsal 1', 90000, 'lapangan-120230221171043.jpg', 'superadmin', '2023-01-04 00:00:00', 'superadmin', '2023-03-17 22:09:34'),
+(2, 'Lapangan Futsal 2', 90000, 'lapangan-futsal-220230221171257.jpg', 'superadmin', '2023-01-04 00:00:00', 'superadmin', '2023-03-17 22:09:44'),
+(6, 'Lapangan Basket 1', 110000, 'lapangan-basket-120230221171334.jpg', 'superadmin', '2023-01-04 00:00:00', 'superadmin', '2023-03-17 22:09:22');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `login_attempts`
+-- Table structure for table `login_attempts`
 --
 
 CREATE TABLE `login_attempts` (
@@ -808,18 +840,10 @@ CREATE TABLE `login_attempts` (
   `time` int(10) UNSIGNED DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
---
--- Dumping data untuk tabel `login_attempts`
---
-
-INSERT INTO `login_attempts` (`id`, `ip_address`, `login`, `time`) VALUES
-(2, '::1', 'superadmin', 1676962452),
-(3, '::1', 'superadmin', 1676962466);
-
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `page`
+-- Table structure for table `page`
 --
 
 CREATE TABLE `page` (
@@ -831,7 +855,7 @@ CREATE TABLE `page` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
--- Dumping data untuk tabel `page`
+-- Dumping data for table `page`
 --
 
 INSERT INTO `page` (`id_page`, `judul_page`, `judul_seo`, `isi_page`, `gambar`) VALUES
@@ -844,7 +868,7 @@ INSERT INTO `page` (`id_page`, `judul_page`, `judul_seo`, `isi_page`, `gambar`) 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `provinsi`
+-- Table structure for table `provinsi`
 --
 
 CREATE TABLE `provinsi` (
@@ -853,7 +877,7 @@ CREATE TABLE `provinsi` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
--- Dumping data untuk tabel `provinsi`
+-- Dumping data for table `provinsi`
 --
 
 INSERT INTO `provinsi` (`id_provinsi`, `nama_provinsi`) VALUES
@@ -895,7 +919,7 @@ INSERT INTO `provinsi` (`id_provinsi`, `nama_provinsi`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `slider`
+-- Table structure for table `slider`
 --
 
 CREATE TABLE `slider` (
@@ -913,7 +937,7 @@ CREATE TABLE `slider` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
--- Dumping data untuk tabel `slider`
+-- Dumping data for table `slider`
 --
 
 INSERT INTO `slider` (`id_slider`, `no_urut`, `nama_slider`, `link`, `foto`, `foto_type`, `foto_size`, `created_at`, `created_by`, `modified_at`, `modified_by`) VALUES
@@ -923,7 +947,7 @@ INSERT INTO `slider` (`id_slider`, `no_urut`, `nama_slider`, `link`, `foto`, `fo
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `subscriber`
+-- Table structure for table `subscriber`
 --
 
 CREATE TABLE `subscriber` (
@@ -936,7 +960,7 @@ CREATE TABLE `subscriber` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `transaksi`
+-- Table structure for table `transaksi`
 --
 
 CREATE TABLE `transaksi` (
@@ -954,7 +978,7 @@ CREATE TABLE `transaksi` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
--- Dumping data untuk tabel `transaksi`
+-- Dumping data for table `transaksi`
 --
 
 INSERT INTO `transaksi` (`id_trans`, `id_invoice`, `user_id`, `subtotal`, `diskon`, `grand_total`, `deadline`, `catatan`, `status`, `created_date`, `created_time`) VALUES
@@ -966,12 +990,14 @@ INSERT INTO `transaksi` (`id_trans`, `id_invoice`, `user_id`, `subtotal`, `disko
 (6, 'J-210408-0003', 3, 300000, 0, 300000, '2023-01-04 00:00:00', '', 2, '2023-01-05', '08:23:09'),
 (7, 'J-210410-0004', 3, 300000, 0, 300000, '2023-01-04 00:00:00', '', 2, '2023-01-05', '08:23:52'),
 (8, 'J-210517-0003', 3, 150000, 0, 150000, '2023-01-04 00:00:00', '', 1, '2023-01-05', '08:23:01'),
-(9, 'J-230221-0001', 6, 300000, 0, 300000, '2023-02-21 18:03:26', 'test catatan', 1, '2023-02-21', '05:02:49');
+(9, 'J-230221-0001', 6, 300000, 0, 300000, '2023-02-21 18:03:26', 'test catatan', 1, '2023-02-21', '05:02:49'),
+(10, 'J-230221-0002', 6, 110, 0, 110, '2023-02-21 22:00:24', '', 1, '2023-02-21', '08:59:57'),
+(11, 'J-230317-0001', 6, 90000, 0, 90000, '2023-03-17 23:14:47', '', 1, '2023-03-17', '10:08:03');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `transaksi_detail`
+-- Table structure for table `transaksi_detail`
 --
 
 CREATE TABLE `transaksi_detail` (
@@ -988,7 +1014,7 @@ CREATE TABLE `transaksi_detail` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
--- Dumping data untuk tabel `transaksi_detail`
+-- Dumping data for table `transaksi_detail`
 --
 
 INSERT INTO `transaksi_detail` (`id_transdet`, `trans_id`, `lapangan_id`, `tanggal`, `jam_mulai`, `durasi`, `jam_selesai`, `harga_jual`, `total`, `created_at`) VALUES
@@ -1000,12 +1026,14 @@ INSERT INTO `transaksi_detail` (`id_transdet`, `trans_id`, `lapangan_id`, `tangg
 (9, 6, 2, '2023-01-03', '10:00:00', 2, '12:00:00', 150000, 300000, '2023-01-01 00:00:00'),
 (10, 7, 2, '2023-01-03', '08:00:00', 2, '10:00:00', 150000, 300000, '2023-01-01 00:00:00'),
 (11, 8, 2, '2023-01-03', '10:00:00', 1, '11:00:00', 150000, 150000, '2023-01-01 00:00:00'),
-(12, 9, 1, '2023-02-21', '20:00:00', 3, '23:00:00', 100000, 300000, '2023-02-21 17:02:49');
+(12, 9, 1, '2023-02-21', '20:00:00', 3, '23:00:00', 100000, 300000, '2023-02-21 17:02:49'),
+(13, 10, 6, '2023-02-21', '19:00:00', 1, '20:00:00', 110, 110, '2023-02-21 20:59:57'),
+(15, 11, 1, '2023-03-19', '15:00:00', 1, '16:00:00', 90000, 90000, '2023-03-17 22:12:42');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `users`
+-- Table structure for table `users`
 --
 
 CREATE TABLE `users` (
@@ -1034,21 +1062,22 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
--- Dumping data untuk tabel `users`
+-- Dumping data for table `users`
 --
 
 INSERT INTO `users` (`id`, `name`, `username`, `password`, `email`, `phone`, `provinsi`, `kota`, `address`, `usertype`, `active`, `photo`, `photo_type`, `ip_address`, `salt`, `activation_code`, `forgotten_password_code`, `forgotten_password_time`, `remember_code`, `last_login`, `created_on`, `modified`) VALUES
-(1, 'SuperAdmin', 'superadmin', '$2y$08$TWMdtdacqPE5yEz9n1LwFuhEVmiDTTsupl12M45tCQihzF1tu2N/6', 'superadmin@gmail.com', '081228289766', 5, 419, 'asdasdasdsa', 1, 1, 'superadmin20230122193931', '.png', '::1', NULL, 'c6ad242e6fd3de875568c7de5ba23af4a24137ef', 'tHafW45duPzrU3oWR0AVuO48b26088a3cd65edc4', 1621246176, NULL, 1676974142, 2147483647, '2023-02-21 17:09:02'),
+(1, 'SuperAdmin', 'superadmin', '$2y$08$TWMdtdacqPE5yEz9n1LwFuhEVmiDTTsupl12M45tCQihzF1tu2N/6', 'superadmin@gmail.com', '081228289766', 5, 419, 'asdasdasdsa', 1, 1, 'superadmin20230122193931', '.png', '::1', NULL, 'c6ad242e6fd3de875568c7de5ba23af4a24137ef', 'tHafW45duPzrU3oWR0AVuO48b26088a3cd65edc4', 1621246176, NULL, 1679984981, 2147483647, '2023-03-28 13:29:41'),
 (2, 'Admin', 'administrator', '$2y$08$rnCngWyQhFLdVJijctNDKuwJZ8o9VfcSsZ9IM9XN71ugxIpQFeCWe', 'administrator@gmail.com', '08124124', NULL, NULL, 'kaldjlas', 2, 1, 'admin20180424102408', '.jpeg', '::1', NULL, NULL, NULL, NULL, NULL, 1676972470, 1524551716, '2023-02-21 16:41:10'),
 (3, 'Batistuta', 'batistuta', '$2y$08$.5EYrM8S8Up0LcpFiEmjauyPVdWOmylLZ.MqM0zBKyDVKniwdVbYi', 'batistuta@gmail.com', '0812412414', 33, 327, 'Jl. Skdlajsdlasjkdl', 4, 1, NULL, NULL, '127.0.0.1', NULL, NULL, NULL, NULL, NULL, 1674204341, 1528634033, '2023-01-20 15:45:41'),
 (4, 'User Premium', 'userpremium', '$2y$08$Wv3MA.DnwTNzBeF62o9neuSXeVdIA/bjlxOzSxtD6DtgStEBn//s.', 'userpremium@gmail.com', '0812412412', 3, 106, 'kaljdklasjdkl', 3, 1, NULL, NULL, '::1', NULL, NULL, NULL, NULL, NULL, 1674399384, 1531807819, '2023-01-22 21:56:24'),
 (5, 'testuser', 'testuser', '$2y$08$aE/NW/R8B1LKCDBWI.X35eLabz./f6IxedeHYcEm4DLrQiILrWn3a', 'testuser@gmail.com', '080654825462', 5, 419, 'Yogyakarta', 4, 1, NULL, NULL, '::1', NULL, NULL, NULL, NULL, NULL, 1676972293, 1676972272, '2023-02-21 16:38:13'),
-(6, 'userbiasa', 'userbiasa', '$2y$08$9FPuJ/ivS1nEh28sBtlOoe5N/QcpiDnLxPa1t4Vy7ScUMDJ/uHOSq', 'userbiasa@gmail.com', '080654825462', 5, 39, 'Yogyakarta', 4, 1, NULL, NULL, '::1', NULL, NULL, NULL, NULL, NULL, 1676973678, 1676973644, '2023-02-21 17:01:18');
+(6, 'userbiasa', 'userbiasa', '$2y$08$9FPuJ/ivS1nEh28sBtlOoe5N/QcpiDnLxPa1t4Vy7ScUMDJ/uHOSq', 'userbiasa@gmail.com', '080654825462', 5, 39, 'Yogyakarta', 4, 1, NULL, NULL, '::1', NULL, NULL, NULL, NULL, NULL, 1679984850, 1676973644, '2023-03-28 13:27:30'),
+(7, 'dwifa', 'dwifa', '$2y$08$roFFUvjyqm1FzxJXfHfa6OfarJK6JUl5TxXrGc.3aPYTP9E5iRdsS', 'dwifa@gmail.com', '085287493940', 5, 419, 'Sleman, Yogyakarta', 4, 1, NULL, NULL, '::1', NULL, NULL, '.9E5LqE3ZzNhdMf6uj0JAea712810f6d7cb6aeae', 1679993583, NULL, 1679993483, 1679993466, '2023-03-28 15:53:03');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `users_group`
+-- Table structure for table `users_group`
 --
 
 CREATE TABLE `users_group` (
@@ -1057,7 +1086,7 @@ CREATE TABLE `users_group` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
--- Dumping data untuk tabel `users_group`
+-- Dumping data for table `users_group`
 --
 
 INSERT INTO `users_group` (`id_group`, `name_group`) VALUES
@@ -1071,99 +1100,105 @@ INSERT INTO `users_group` (`id_group`, `name_group`) VALUES
 --
 
 --
--- Indeks untuk tabel `album`
+-- Indexes for table `album`
 --
 ALTER TABLE `album`
   ADD PRIMARY KEY (`id_album`);
 
 --
--- Indeks untuk tabel `bank`
+-- Indexes for table `bank`
 --
 ALTER TABLE `bank`
   ADD PRIMARY KEY (`id_bank`);
 
 --
--- Indeks untuk tabel `company`
+-- Indexes for table `bukti`
+--
+ALTER TABLE `bukti`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `company`
 --
 ALTER TABLE `company`
   ADD PRIMARY KEY (`id_company`);
 
 --
--- Indeks untuk tabel `diskon`
+-- Indexes for table `diskon`
 --
 ALTER TABLE `diskon`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `event`
+-- Indexes for table `event`
 --
 ALTER TABLE `event`
   ADD PRIMARY KEY (`id_event`);
 
 --
--- Indeks untuk tabel `foto`
+-- Indexes for table `foto`
 --
 ALTER TABLE `foto`
   ADD PRIMARY KEY (`id_foto`),
   ADD KEY `foto_FK` (`album_id`);
 
 --
--- Indeks untuk tabel `jam`
+-- Indexes for table `jam`
 --
 ALTER TABLE `jam`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `kategori`
+-- Indexes for table `kategori`
 --
 ALTER TABLE `kategori`
   ADD PRIMARY KEY (`id_kategori`);
 
 --
--- Indeks untuk tabel `kontak`
+-- Indexes for table `kontak`
 --
 ALTER TABLE `kontak`
   ADD PRIMARY KEY (`id_kontak`);
 
 --
--- Indeks untuk tabel `lapangan`
+-- Indexes for table `lapangan`
 --
 ALTER TABLE `lapangan`
   ADD PRIMARY KEY (`id_lapangan`);
 
 --
--- Indeks untuk tabel `login_attempts`
+-- Indexes for table `login_attempts`
 --
 ALTER TABLE `login_attempts`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `page`
+-- Indexes for table `page`
 --
 ALTER TABLE `page`
   ADD PRIMARY KEY (`id_page`);
 
 --
--- Indeks untuk tabel `slider`
+-- Indexes for table `slider`
 --
 ALTER TABLE `slider`
   ADD PRIMARY KEY (`id_slider`);
 
 --
--- Indeks untuk tabel `subscriber`
+-- Indexes for table `subscriber`
 --
 ALTER TABLE `subscriber`
   ADD PRIMARY KEY (`id_subscriber`);
 
 --
--- Indeks untuk tabel `transaksi`
+-- Indexes for table `transaksi`
 --
 ALTER TABLE `transaksi`
   ADD PRIMARY KEY (`id_trans`),
   ADD KEY `transaksi_FK` (`user_id`);
 
 --
--- Indeks untuk tabel `transaksi_detail`
+-- Indexes for table `transaksi_detail`
 --
 ALTER TABLE `transaksi_detail`
   ADD PRIMARY KEY (`id_transdet`),
@@ -1171,141 +1206,147 @@ ALTER TABLE `transaksi_detail`
   ADD KEY `transaksi_detail_FK_1` (`trans_id`);
 
 --
--- Indeks untuk tabel `users`
+-- Indexes for table `users`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `users_group`
+-- Indexes for table `users_group`
 --
 ALTER TABLE `users_group`
   ADD PRIMARY KEY (`id_group`);
 
 --
--- AUTO_INCREMENT untuk tabel yang dibuang
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT untuk tabel `album`
+-- AUTO_INCREMENT for table `album`
 --
 ALTER TABLE `album`
-  MODIFY `id_album` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id_album` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
--- AUTO_INCREMENT untuk tabel `bank`
+-- AUTO_INCREMENT for table `bank`
 --
 ALTER TABLE `bank`
   MODIFY `id_bank` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT untuk tabel `company`
+-- AUTO_INCREMENT for table `bukti`
+--
+ALTER TABLE `bukti`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+
+--
+-- AUTO_INCREMENT for table `company`
 --
 ALTER TABLE `company`
   MODIFY `id_company` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT untuk tabel `event`
+-- AUTO_INCREMENT for table `event`
 --
 ALTER TABLE `event`
   MODIFY `id_event` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
--- AUTO_INCREMENT untuk tabel `foto`
+-- AUTO_INCREMENT for table `foto`
 --
 ALTER TABLE `foto`
-  MODIFY `id_foto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id_foto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
--- AUTO_INCREMENT untuk tabel `jam`
+-- AUTO_INCREMENT for table `jam`
 --
 ALTER TABLE `jam`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
--- AUTO_INCREMENT untuk tabel `kategori`
+-- AUTO_INCREMENT for table `kategori`
 --
 ALTER TABLE `kategori`
   MODIFY `id_kategori` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT untuk tabel `kontak`
+-- AUTO_INCREMENT for table `kontak`
 --
 ALTER TABLE `kontak`
   MODIFY `id_kontak` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT untuk tabel `lapangan`
+-- AUTO_INCREMENT for table `lapangan`
 --
 ALTER TABLE `lapangan`
   MODIFY `id_lapangan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
--- AUTO_INCREMENT untuk tabel `login_attempts`
+-- AUTO_INCREMENT for table `login_attempts`
 --
 ALTER TABLE `login_attempts`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- AUTO_INCREMENT untuk tabel `page`
+-- AUTO_INCREMENT for table `page`
 --
 ALTER TABLE `page`
   MODIFY `id_page` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- AUTO_INCREMENT untuk tabel `slider`
+-- AUTO_INCREMENT for table `slider`
 --
 ALTER TABLE `slider`
   MODIFY `id_slider` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT untuk tabel `subscriber`
+-- AUTO_INCREMENT for table `subscriber`
 --
 ALTER TABLE `subscriber`
   MODIFY `id_subscriber` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT untuk tabel `transaksi`
+-- AUTO_INCREMENT for table `transaksi`
 --
 ALTER TABLE `transaksi`
-  MODIFY `id_trans` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id_trans` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
--- AUTO_INCREMENT untuk tabel `transaksi_detail`
+-- AUTO_INCREMENT for table `transaksi_detail`
 --
 ALTER TABLE `transaksi_detail`
-  MODIFY `id_transdet` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id_transdet` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
--- AUTO_INCREMENT untuk tabel `users`
+-- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
--- AUTO_INCREMENT untuk tabel `users_group`
+-- AUTO_INCREMENT for table `users_group`
 --
 ALTER TABLE `users_group`
   MODIFY `id_group` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
+-- Constraints for dumped tables
 --
 
 --
--- Ketidakleluasaan untuk tabel `foto`
+-- Constraints for table `foto`
 --
 ALTER TABLE `foto`
   ADD CONSTRAINT `foto_FK` FOREIGN KEY (`album_id`) REFERENCES `album` (`id_album`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Ketidakleluasaan untuk tabel `transaksi`
+-- Constraints for table `transaksi`
 --
 ALTER TABLE `transaksi`
   ADD CONSTRAINT `transaksi_FK` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Ketidakleluasaan untuk tabel `transaksi_detail`
+-- Constraints for table `transaksi_detail`
 --
 ALTER TABLE `transaksi_detail`
   ADD CONSTRAINT `transaksi_detail_FK` FOREIGN KEY (`lapangan_id`) REFERENCES `lapangan` (`id_lapangan`) ON DELETE CASCADE ON UPDATE CASCADE,

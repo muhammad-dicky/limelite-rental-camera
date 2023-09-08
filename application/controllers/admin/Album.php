@@ -48,6 +48,7 @@ class Album extends CI_Controller
     }
     else
     {
+      
       /* 4 adalah menyatakan tidak ada file yang diupload*/
       if ($_FILES['foto']['error'] <> 4)
       {

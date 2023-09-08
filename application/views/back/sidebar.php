@@ -26,6 +26,12 @@
           <i class="fa fa-book"></i> <span>Transaksi</span>
         </a>
       </li>
+
+      <li <?php if($this->uri->segment(2) == "bukti"){echo "class='active'";} ?>>
+        <a href="<?php echo base_url('admin/bukti') ?>">
+          <i class="fa fa-book"></i> <span>Bukti Pembayaran</span>
+        </a>
+      </li>
       <li <?php if($this->uri->segment(2) == "lapangan"){echo "class='active'";} ?>>
         <a href='#'><i class='fa fa-list'></i><span> Lapangan </span><i class='fa fa-angle-left pull-right'></i></a>
         <ul class='treeview-menu'>

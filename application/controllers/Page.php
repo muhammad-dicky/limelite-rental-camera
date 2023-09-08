@@ -33,13 +33,12 @@ class Page extends CI_Controller {
 
 	public function contact()
 	{
-		$this->data['title'] 							= 'Contact';
+		$this->data['title'] = 'Contact';
 
 		$this->data['name'] = array(
       'name'  => 'name',
       'id'    => 'name',
-      'class' => 'form-control',
-			'placeholder'    => 'Nama',
+      'class' => 'form-control', 'placeholder' => 'Nama',
       'value' => $this->form_validation->set_value('name'),
     );
 		$this->data['email'] = array(
@@ -64,6 +63,13 @@ class Page extends CI_Controller {
       'value' => $this->form_validation->set_value('message'),
     );
 
+		$this->data['foto'] = array(
+      'name'  => 'foto',
+      'id'    => 'foto',
+      'class' => 'form-control',
+      'value' => $this->form_validation->set_value('message'),
+    );
+
 		$this->load->view('front/page/contact', $this->data);
 	}
 
@@ -84,30 +90,91 @@ class Page extends CI_Controller {
     }
 			else
 			{
+				$data = array(
+					'name' => $this->input->post('name'),
+					'email' => $this->input->post('email'),
+					'subject' => $this->input->post('subject'),
+					'message' => $this->input->post('message'),
+					);
+
+				// fungsi upload foto
+				$config['upload_path']          = './assets/images/bukti/';
+				$config['allowed_types']        = 'gif|jpg|png';
+				$config['max_size']             = 4000;
+				$this->load->library('upload', $config);
+				if (!$this->upload->do_upload('foto')) {
+					echo $this->upload->display_errors();
+				}else{
+					$name = $this->input->post('name');
+					$email = $this->input->post('email');
+					$subject = $this->input->post('subject');
+					$message = $this->input->post('message');
+					$foto = $this->upload->file_name;
+					
+					$data = array(
+						'name' => $this->input->post('name'),
+					'email' => $this->input->post('email'),
+					'subject' => $this->input->post('subject'),
+					'message' => $this->input->post('message'),
+						'foto' => $foto,
+					);
+					$this->db->insert('bukti', $data);
+					$this->session->set_flashdata('message', '<div class="row"><div class="col-lg-12"><div class="alert alert-success alert">Pesan Anda telah Terkirim, Silahkan menunggu status bayar berhasil Terima Kasih</div></div></div>');
+					redirect('page/contact');
+				}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 				// ambil value dari masing2 form input
-				$name 			= $this->input->post('name');
-				$email 			= $this->input->post('email');
-				$subject 		= $this->input->post('subject');
-				$message 		= $this->input->post('message');
+				// $name 			= $this->input->post('name');
+				// $email 			= $this->input->post('email');
+				// $subject 		= $this->input->post('subject');
+				// $message 		= $this->input->post('message');
+				// $data = array(
+				// 'name' => $this->input->post('name'),
+				// 'email' => $this->input->post('email'),
+				// 'subject' => $this->input->post('subject'),
+				// 'message' => $this->input->post('message'),
+				// );
+				
+        // eksekusi query INSERT
+        // $this->Kontak_model->insert_bukti($data);
+        // set pesan data berhasil dibuat
 
 				// setingan default tanpa smtp
-				$this->load->library('email');
+				// $this->load->library('email');
 
-				$this->email->from('mail@azmicolejr.com', 'Pesan Baru dari Website');
-				$this->email->to('azmi2793@gmail.com');
-				$this->email->subject($subject);
-				$this->email->message($message);
+				// $this->email->from('dickyzs155@gmail.com', 'Pesan Baru dari Website');
+				// $this->email->to('muhammad.dickynn@gmail.com');
+				// $this->email->subject($subject);
+				// $this->email->message($message);
 
-				if ($this->email->send())
-		    {
-					$this->session->set_flashdata('message', '<div class="row"><div class="col-lg-12"><div class="alert alert-success alert">Pesan Anda telah Terkirim, Terima Kasih</div></div></div>');
-					redirect(site_url('contact'));
-		    }
-		    else
-		    {
-					$this->session->set_flashdata('message', '<div class="row"><div class="col-lg-12"><div class="alert alert-danger alert">Pesan Anda Gagal Terkirim, silahkan coba kembali</div></div></div>');
-					redirect(site_url('contact'));
-		    }
+				// $this->session->set_flashdata('message', '<div class="row"><div class="col-lg-12"><div class="alert alert-success alert">Pesan Anda telah Terkirim, Terima Kasih</div></div></div>');
+				// 	redirect(site_url('contact'));
+
+			// 	if ($this->email->send())
+		    // {
+			// 		$this->session->set_flashdata('message', '<div class="row"><div class="col-lg-12"><div class="alert alert-success alert">Pesan Anda telah Terkirim, Terima Kasih</div></div></div>');
+			// 		redirect(site_url('contact'));
+		    // }
+		    // else
+		    // {
+			// 		$this->session->set_flashdata('message', '<div class="row"><div class="col-lg-12"><div class="alert alert-danger alert">Pesan Anda Gagal Terkirim, silahkan coba kembali</div></div></div>');
+			// 		redirect(site_url('contact'));
+		    // }
 			}
 	}
 
@@ -115,8 +182,8 @@ class Page extends CI_Controller {
 		// setingan default tanpa smtp
 		$this->load->library('email');
 
-		$this->email->from('mail@azmicolejr.com', 'fungsimail');
-		$this->email->to('azmi2793@gmail.com');
+		$this->email->from('test1@gmail.com', 'fungsimail');
+		$this->email->to('test@gmail.com');
 		$this->email->subject('kirimemailpakemail');
 		$this->email->message('asdsadasd');
 
@@ -132,24 +199,24 @@ class Page extends CI_Controller {
 		// Konfigurasi email dengan smtp
     // $config = [
     //    'smtp_host' => 'ssl://smtp.gmail.com',
-    //    'smtp_user' => 'azmicolejr@gmail.com',   // Ganti dengan email gmail Anda.
-    //    'smtp_pass' => 'Revoiu2550',             // Password gmail Anda.
+    //    'smtp_user' => 'test@gmail.com',   // Ganti dengan email gmail Anda.
+    //    'smtp_pass' => 'pass',             // Password gmail Anda.
     //    'smtp_port' => 465,
    	// ];
-		//
+		
     // // Load library email dan konfigurasinya.
     // $this->load->library('email', $config);
-		//
+		
     // // Pengirim dan penerima email.
-    // $this->email->from('mail@azmicolejr.com', 'kirimpakesmtp');    // Email dan nama pegirim.
-    // $this->email->to('azmi2793@gmail.com');                       // Penerima email.
-		//
+    // $this->email->from('test@gmail.com', 'kirimpakesmtp');    // Email dan nama pegirim.
+    // $this->email->to('test@gmail.com');                       // Penerima email.
+		
     // // Subject email.
     // $this->email->subject('Kirim Email pada CodeIgniter');
-		//
+		
     // // Isi email. Bisa dengan format html.
-		// $this->email->message('Halo bos, ada konfirmasi pembayaran baru dengan rincian sebagai berikut: <br>');
-		//
+	// 	$this->email->message('Halo bos, ada konfirmasi pembayaran baru dengan rincian sebagai berikut: <br>');
+		
     // if ($this->email->send())
     // {
     //   echo 'Sukses! email berhasil dikirim.';
