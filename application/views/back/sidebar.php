@@ -2,7 +2,10 @@
   <section class="sidebar">
     <!-- Sidebar user panel -->
     <div class="user-panel">
-      <div class="pull-left image"><img src="<?php echo base_url()?>assets/images/user/<?php echo $this->session->userdata('photo').$this->session->userdata('photo_type') ?>" class="img-circle" alt="User Image"/></div>
+      <div class="pull-left image">
+        <img src="<?php echo base_url()?>assets/images/user/<?php echo $this->session->userdata('photo').$this->session->userdata('photo_type') ?>" class="img-circle" alt="User Image"/>
+      </div>
+      
       <div class="pull-left info">
         <p><?php echo $this->session->userdata('name'); ?></p>
         <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
@@ -27,16 +30,16 @@
         </a>
       </li>
 
-      <li <?php if($this->uri->segment(2) == "bukti"){echo "class='active'";} ?>>
+      <!-- <li <?php if($this->uri->segment(2) == "bukti"){echo "class='active'";} ?>>
         <a href="<?php echo base_url('admin/bukti') ?>">
           <i class="fa fa-book"></i> <span>Bukti Pembayaran</span>
         </a>
-      </li>
-      <li <?php if($this->uri->segment(2) == "lapangan"){echo "class='active'";} ?>>
-        <a href='#'><i class='fa fa-list'></i><span> Lapangan </span><i class='fa fa-angle-left pull-right'></i></a>
+      </li> -->
+      <li <?php if($this->uri->segment(2) == "kamera"){echo "class='active'";} ?>>
+        <a href='#'><i class='fa fa-list'></i><span> Kamera </span><i class='fa fa-angle-left pull-right'></i></a>
         <ul class='treeview-menu'>
-          <li <?php if($this->uri->segment(2) == "lapangan" && $this->uri->segment(3) == "create"){echo "class='active'";} ?>><a href='<?php echo base_url('admin/lapangan/create') ?>'><i class='fa fa-circle-o'></i> Tambah Lapangan </a></li>
-          <li <?php if($this->uri->segment(2) == "lapangan" && $this->uri->segment(3) == ""){echo "class='active'";} ?>><a href='<?php echo base_url('admin/lapangan') ?>'><i class='fa fa-circle-o'></i> Data Lapangan </a></li>
+          <li <?php if($this->uri->segment(2) == "kamera" && $this->uri->segment(3) == "create"){echo "class='active'";} ?>><a href='<?php echo base_url('admin/kamera/create') ?>'><i class='fa fa-circle-o'></i> Tambah Kamera </a></li>
+          <li <?php if($this->uri->segment(2) == "kamera" && $this->uri->segment(3) == ""){echo "class='active'";} ?>><a href='<?php echo base_url('admin/kamera') ?>'><i class='fa fa-circle-o'></i> Data Kamera </a></li>
         </ul>
       </li>
       <li <?php if($this->uri->segment(2) == "album"){echo "class='active'";} ?>>

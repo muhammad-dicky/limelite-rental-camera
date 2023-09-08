@@ -11,7 +11,7 @@ class Dashboard extends CI_Controller {
 		$this->load->model('Ion_auth_model');
 		$this->load->model('Kategori_model');
 		$this->load->model('Kontak_model');
-		$this->load->model('Lapangan_model');
+		$this->load->model('Kamera_model');
 
 		$this->load->model('Slider_model');
 
@@ -26,7 +26,7 @@ class Dashboard extends CI_Controller {
 				'total_foto' 				=> $this->Foto_model->total_rows(),
 				'total_kategori' 		=> $this->Kategori_model->total_rows(),
 				'total_kontak' 			=> $this->Kontak_model->total_rows(),
-				'total_lapangan'		=> $this->Lapangan_model->total_rows(),
+				'total_kamera'		=> $this->Kamera_model->total_rows(),
 				'total_slider' 			=> $this->Slider_model->total_rows(),
 				'total_customer' 		=> $this->Ion_auth_model->total_rows_customer(),
 

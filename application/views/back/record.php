@@ -45,9 +45,9 @@
     </div>
     <div class='col-lg-3'>
       <div class='small-box bg-green'>
-        <div class='inner'><h3> <?php echo $total_lapangan ?> </h3><p><b>LAPANGAN</b></p></div>
+        <div class='inner'><h3> <?php echo $total_kamera ?> </h3><p><b>KAMERA</b></p></div>
         <div class='icon'><i class='fa fa-list'></i></div>
-        <a href='<?php echo base_url('admin/lapangan') ?>' class='small-box-footer'>Selengkapnya <i class='fa fa-arrow-circle-right'></i></a>
+        <a href='<?php echo base_url('admin/kamera') ?>' class='small-box-footer'>Selengkapnya <i class='fa fa-arrow-circle-right'></i></a>
       </div>
     </div>
     <div class='col-lg-3'>

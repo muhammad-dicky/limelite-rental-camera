@@ -31,6 +31,7 @@
       									<th style="text-align: center">Dibuat</th>
       									<th style="text-align: center">Grand Total</th>
       									<th style="text-align: center">Status</th>
+      									<!-- <th style="text-align: center">Bukti Bayar</th> -->
                         <th style="text-align: center">Aksi</th>
 											</tr>
 										</thead>
@@ -61,6 +62,10 @@
                           <a href="<?php echo base_url('admin/transaksi/detail/').$data->id_trans ?>">
                             <button name="update" class="btn btn-primary"><i class="fa fa-search-plus"></i> Detail</button>
                           </a>
+
+                          <?php
+                            echo anchor(site_url('admin/transaksi/delete/'.$data->id_trans),'<i class="fa fa-remove"></i>','title="Hapus", class="btn btn-sm btn-danger", onclick="javasciprt: return confirm(\'Apakah Anda yakin ?\')"');
+                            ?>
                         </td>
                       </tr>
                     <?php } ?>

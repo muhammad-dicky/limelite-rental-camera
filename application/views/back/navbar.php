@@ -1,7 +1,7 @@
 <header class="main-header"  >
   <a href="<?php echo base_url('admin/dashboard') ?>" class="logo">
-    <span class="logo-mini" ><b>FUTSAL 7 JAKAL</b></span>
-    <span class="logo-lg"><b>FUTSAL</b></span>
+    <span class="logo-mini" ><b>LIMELITE CAMERA</b></span>
+    <span class="logo-lg"><b>CAMERA</b></span>
   </a>
   <nav class="navbar navbar-static-top" role="navigation">
     <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">

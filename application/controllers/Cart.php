@@ -18,7 +18,7 @@ class Cart extends CI_Controller
 		$this->load->model('Kontak_model');
 		$this->load->model('Jam_model');
 		$this->load->model('Transaksi_detail_model');
-		$this->load->model('Lapangan_model');
+		$this->load->model('Kamera_model');
 
 		$this->data['company_data'] 			= $this->Company_model->get_by_company();
 		$this->data['kontak'] 						= $this->Kontak_model->get_all();
@@ -68,7 +68,7 @@ class Cart extends CI_Controller
 	public function buy($id)
 	{
 		// ambil data produk
-		$row = $this->Lapangan_model->get_by_id($id);
+		$row = $this->Kamera_model->get_by_id($id);
 
 		// cek id produk
 		if ($row) {
@@ -89,7 +89,7 @@ class Cart extends CI_Controller
 				else {
 					$data2 = array(
 						'trans_id'    => $id_trans,
-						'lapangan_id' => $id,
+						'kamera_id' => $id,
 						'harga_jual'  => $row->harga,
 						'total'       => $row->harga,
 					);
@@ -137,7 +137,7 @@ class Cart extends CI_Controller
 
 				$data2 = array(
 					'trans_id'  	=> $cek_transaksi->id_trans,
-					'lapangan_id' => $id,
+					'kamera_id' => $id,
 					'harga_jual'  => $row->harga,
 					'total'  	=> $row->harga,
 				);
@@ -190,7 +190,7 @@ class Cart extends CI_Controller
 
 	public function checkout()
 	{
-		$count = count($this->input->post('lapangan'));
+		$count = count($this->input->post('kamera'));
 		for ($i = 0; $i < $count; $i++) {
 			$data_detail[$i] = array(
 				'id_transdet'   => $this->input->post('id_transdet[' . $i . ']'),
@@ -247,6 +247,32 @@ class Cart extends CI_Controller
 		$this->data['data_bank'] 								= $this->Bank_model->get_all();
 
 		$this->load->view('front/cart/finished', $this->data);
+	}
+
+	public function upload_gambar($id_transaksi){
+		$config['upload_path'] = './uploads/'; // Lokasi penyimpanan gambar
+		$config['allowed_types'] = 'jpg|jpeg|png|gif';
+		$config['max_size'] = 2048; // Ukuran maksimum dalam KB
+	
+		$this->load->library('upload', $config);
+	
+		if (!$this->upload->do_upload('userfile')) {
+			$error = $this->upload->display_errors();
+			// Handle error jika terjadi kesalahan saat mengunggah gambar
+		} else {
+			// Upload berhasil, simpan nama file gambar ke dalam database
+			$data = $this->upload->data();
+			$gambar_nama = $data['file_name'];
+	
+			// Update kolom gambar_bukti_pembayaran di dalam tabel transaksi
+			$this->Cart_model->update_gambar($id_transaksi, $gambar_nama);
+
+			$this->session->set_flashdata('success_message', 'Gambar berhasil diunggah.');
+
+	
+			// Redirect atau tampilkan pesan sukses
+			redirect('cart/finished');
+		}
 	}
 
 	public function download_invoice($id)
@@ -313,14 +339,14 @@ class Cart extends CI_Controller
 	public function getJamMulai()
 	{
 		$tanggal = $this->input->post('tanggal');
-		$lapangan_id = $this->input->post('lapangan_id');
+		$kamera_id = $this->input->post('kamera_id');
 
-		if ($tanggal === FALSE || $lapangan_id === FALSE) {
+		if ($tanggal === FALSE || $kamera_id === FALSE) {
 			echo json_encode(array());
 			die();
 		}
 
-		$list_jam_mulai_terpakai = $this->Transaksi_detail_model->get_jam_mulai_terpakai($tanggal, $lapangan_id);
+		$list_jam_mulai_terpakai = $this->Transaksi_detail_model->get_jam_mulai_terpakai($tanggal, $kamera_id);
 
 		$list_jam_mulai_terpakai_arr = array();
 		foreach ($list_jam_mulai_terpakai as $a_jam) {

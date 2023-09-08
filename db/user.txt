@@ -1,9 +1,9 @@
 Backend: Sebagai SuperAdmin atau Admin:
-Akses ke http://localhost/futsal/admin/auth/login
+Akses ke http://localhost/alwan/admin/auth/login
 Gunakan akun SuperAdmin dengan email superadmin@gmail.com dan password: superadmin, 
 Admin: administrator@gmail.com dan password: administrator
 Frontend: Sebagai Customer Biasa dan Sudah Berlangganan Member
-Akses ke http://localhost/futsal/auth/login
+Akses ke http://localhost/alwan/auth/login
 Gunakan akun biasa dengan email batistuta@gmail.com dan password: asdfghjkl, 
 Admin: userpremium@gmail.com@gmail.com dan password: asdfghjkl
 

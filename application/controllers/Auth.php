@@ -68,7 +68,7 @@ class Auth extends CI_Controller {
 			$this->ion_auth->register($identity, $password, $email, $additional_data);
 
 			// check to see if we are creating the user | redirect them back to the admin page
-			$this->session->set_flashdata('message', '<div class="alert alert-success alert">Registrasi Berhasil, silahkan login untuk mulai booking lapangan.</div>');
+			$this->session->set_flashdata('message', '<div class="alert alert-success alert">Registrasi Berhasil, silahkan login untuk mulai booking kamera.</div>');
 			redirect(base_url());
 		}
 			else

@@ -31,7 +31,7 @@
                 <thead>
                   <tr>
 										<th style="text-align: center">No.</th>
-										<th style="text-align: center">Lapangan</th>
+										<th style="text-align: center">Kamera</th>
 										<th style="text-align: center">Harga</th>
 										<th style="text-align: center">Tanggal</th>
 	                  <th style="text-align: center">Jam Mulai</th>
@@ -44,7 +44,7 @@
                 <?php $no=1; foreach ($history_detail as $history){ ?>
                   <tr>
 										<td style="text-align:center"><?php echo $no++ ?></a></td>
-                    <td style="text-align:left"><?php echo $history->nama_lapangan ?></a></td>
+                    <td style="text-align:left"><?php echo $history->nama_kamera ?></a></td>
 										<td style="text-align:center"><?php echo $history->harga_jual ?></td>
                     <td style="text-align:center"><?php echo tgl_indo($history->tanggal) ?></td>
                     <td style="text-align:center"><?php echo $history->jam_mulai ?></td>

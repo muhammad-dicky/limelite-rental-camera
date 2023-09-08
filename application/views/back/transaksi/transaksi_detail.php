@@ -63,7 +63,7 @@
                 <thead>
                   <tr>
                     <th style="text-align: center">No.</th>
-                    <th style="text-align: center">Nama Lapangan</th>
+                    <th style="text-align: center">Nama Kamera</th>
                     <th style="text-align: center">Harga</th>
                     <th style="text-align: center">Tanggal</th>
                     <th style="text-align: center">Jumlah Mulai</th>
@@ -76,7 +76,7 @@
                 <?php $no=1; foreach ($cart_finished as $cart){ ?>
                   <tr>
                     <td style="text-align:center"><?php echo $no++ ?></td>
-                    <td style="text-align:left"><?php echo $cart->nama_lapangan ?></td>
+                    <td style="text-align:left"><?php echo $cart->nama_kamera ?></td>
                     <td style="text-align:center"><?php echo number_format($cart->harga_jual) ?></td>
                     <td style="text-align:center"><?php echo $cart->tanggal ?></td>
                     <td style="text-align:center"><?php echo $cart->jam_mulai ?></td>
@@ -115,6 +115,17 @@
             <b>Catatan:</b>
             <?php if($cart_finished_row->catatan != NULL){ echo $cart_finished_row->catatan; } else{ echo "-"; } ?>
             <br><br>
+
+            <b>Bukti Bayar:</b>
+
+            <?php if ($cart_finished_row->gambar != NULL): ?>
+    <br><br>
+    <img src="<?php echo base_url('./uploads/' . $cart_finished_row->gambar); ?>" width="50%">
+<?php endif; ?>
+
+
+
+
             <p><b>Hormat kami,</b>
               <br>Operator
             </p>

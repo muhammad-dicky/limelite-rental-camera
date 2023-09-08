@@ -39,7 +39,7 @@
               <button type="submit" class="btn btn-primary btn-block btn-flat">Sign In</button>
             </div><!-- /.col -->
           </div>
-          <p><p><a href="#" data-toggle="modal" data-target="#pswreset"><b>Lupa Password?</b></a></p>
+          <!-- <p><p><a href="#" data-toggle="modal" data-target="#pswreset"><b>Lupa Password?</b></a></p> -->
         </form>
         <?php echo form_close();?>
       </div><!-- /.login-box-body -->

@@ -27,7 +27,7 @@
       <thead>
         <tr>
           <th style="text-align: center; background: #ddd; width: 30px">No.</th>
-          <th style="text-align: center; background: #ddd; width: 130px">Nama Lapangan</th>
+          <th style="text-align: center; background: #ddd; width: 130px">Nama Kamera</th>
           <th style="text-align: center; background: #ddd; width: 100px">Harga Per Jam</th>
           <th style="text-align: center; background: #ddd; width: 100px">Tanggal</th>
           <th style="text-align: center; background: #ddd; width: 80px">Mulai</th>
@@ -40,7 +40,7 @@
       <?php $no=1; foreach ($cart_finished as $cart){ ?>
         <tr>
           <td style="text-align:center;width: 30px"><?php echo $no++ ?></td>
-          <td style="text-align:left;width: 130px"><?php echo $cart->nama_lapangan ?></td>
+          <td style="text-align:left;width: 130px"><?php echo $cart->nama_kamera ?></td>
           <td style="text-align:right;width: 100px"><?php echo number_format($cart->harga_jual) ?></td>
           <td style="text-align:center;width: 100px"><?php echo tgl_indo($cart->tanggal) ?></td>
           <td style="text-align:center;width: 80px"><?php echo $cart->jam_mulai ?></td>

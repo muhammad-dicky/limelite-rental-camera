@@ -73,7 +73,7 @@
     $jsArray = "var prdName = new Array();\n";
     foreach ($get_all as $barang)
     {
-      $jsArray .= "prdName['".$barang->id_lapangan."'] =
+      $jsArray .= "prdName['".$barang->id_kamera."'] =
       {
         stok:'".addslashes($barang->stok)."',
         kd_barang:'".addslashes($barang->kd_barang)."',
@@ -102,12 +102,12 @@
       durasi_el = tanggal_el.parent().parent().find(".durasi");
       jam_selesai_el = durasi_el.parent().parent().find(".jam_selesai");
       loading_container_el = tanggal_el.parent().parent().find(".loading_container");
-      lapangan_id_el = tanggal_el.parent().parent().find(".lapangan_id");
+      kamera_id_el = tanggal_el.parent().parent().find(".kamera_id");
 
       jam_mulai_el.hide();
       loading_container_el.show();
 
-      $.post( '<?php echo base_url(); ?>Cart/getJamMulai', {tanggal: tanggal_val, lapangan_id: lapangan_id_el.val()}, function(data) {
+      $.post( '<?php echo base_url(); ?>Cart/getJamMulai', {tanggal: tanggal_val, kamera_id: kamera_id_el.val()}, function(data) {
           jam_mulai_el.show();
           loading_container_el.hide();
           jam_mulai_el.html("");

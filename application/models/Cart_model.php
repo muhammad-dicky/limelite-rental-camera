@@ -34,13 +34,13 @@ class Cart_model extends CI_Model
   function get_cart_per_customer_finished_back($id)
   {
     $this->db->select('
-    lapangan.id_lapangan, lapangan.nama_lapangan,
-    transaksi.id_trans, transaksi.id_invoice, transaksi.user_id, transaksi.subtotal, transaksi.diskon, transaksi.grand_total, transaksi.deadline, transaksi.status, transaksi.catatan, transaksi.created_date,
-    transaksi_detail.trans_id, transaksi_detail.lapangan_id, transaksi_detail.tanggal, transaksi_detail.jam_mulai, transaksi_detail.durasi, transaksi_detail.jam_selesai, transaksi_detail.harga_jual, transaksi_detail.total,
+    kamera.id_kamera, kamera.nama_kamera,
+    transaksi.id_trans, transaksi.id_invoice, transaksi.user_id, transaksi.subtotal, transaksi.diskon, transaksi.grand_total, transaksi.deadline, transaksi.status, transaksi.catatan, transaksi.gambar, transaksi.created_date,
+    transaksi_detail.trans_id, transaksi_detail.kamera_id, transaksi_detail.tanggal, transaksi_detail.jam_mulai, transaksi_detail.durasi, transaksi_detail.jam_selesai, transaksi_detail.harga_jual, transaksi_detail.total,
     provinsi.nama_provinsi,kota.nama_kota,
     users.id, users.name, users.address
     ');
-    $this->db->join('lapangan', 'transaksi_detail.lapangan_id = lapangan.id_lapangan');
+    $this->db->join('kamera', 'transaksi_detail.kamera_id = kamera.id_kamera');
     $this->db->join('transaksi', 'transaksi_detail.trans_id = transaksi.id_trans');
     $this->db->join('users', 'transaksi.user_id = users.id');
     $this->db->join('provinsi', 'provinsi.id_provinsi = users.provinsi');
@@ -78,7 +78,7 @@ class Cart_model extends CI_Model
   function get_notransdet($id)
   {
     $this->db->join('transaksi_detail', 'transaksi.id_trans = transaksi_detail.trans_id');
-    $this->db->where('lapangan_id',$id);
+    $this->db->where('kamera_id',$id);
     $this->db->where('user_id', $this->session->userdata('user_id'));
     $this->db->where('status','0');
     return $this->db->get($this->table)->row();
@@ -87,8 +87,8 @@ class Cart_model extends CI_Model
   // ambil semua data dari 4 tabel per customer
   function get_cart_per_customer()
   {
-    // $this->db->join('lapangan', 'transaksi_detail.lapangan_id = lapangan.id_lapangan');
-    $this->db->join('lapangan', 'transaksi_detail.lapangan_id = lapangan.id_lapangan');
+    // $this->db->join('kamera', 'transaksi_detail.kamera_id = kamera.id_kamera');
+    $this->db->join('kamera', 'transaksi_detail.kamera_id = kamera.id_kamera');
     $this->db->join('transaksi', 'transaksi_detail.trans_id = transaksi.id_trans');
     $this->db->join('users', 'transaksi.user_id = users.id');
     $this->db->where('transaksi.user_id', $this->session->userdata('user_id'));
@@ -99,12 +99,12 @@ class Cart_model extends CI_Model
   function get_cart_per_customer_finished($id)
   {
     $this->db->select('
-    lapangan.id_lapangan, lapangan.nama_lapangan,
+    kamera.id_kamera, kamera.nama_kamera,
     transaksi.id_trans, transaksi.id_invoice, transaksi.user_id, transaksi.subtotal, transaksi.diskon, transaksi.grand_total, transaksi.deadline, transaksi.status, transaksi.catatan,
-    transaksi_detail.trans_id, transaksi_detail.lapangan_id, transaksi_detail.tanggal, transaksi_detail.jam_mulai, transaksi_detail.durasi, transaksi_detail.jam_selesai, transaksi_detail.harga_jual, transaksi_detail.total,
+    transaksi_detail.trans_id, transaksi_detail.kamera_id, transaksi_detail.tanggal, transaksi_detail.jam_mulai, transaksi_detail.durasi, transaksi_detail.jam_selesai, transaksi_detail.harga_jual, transaksi_detail.total,
     users.id
     ');
-    $this->db->join('lapangan', 'transaksi_detail.lapangan_id = lapangan.id_lapangan');
+    $this->db->join('kamera', 'transaksi_detail.kamera_id = kamera.id_kamera');
     $this->db->join('transaksi', 'transaksi_detail.trans_id = transaksi.id_trans');
     $this->db->join('users', 'transaksi.user_id = users.id');
     $this->db->where('transaksi.id_trans',$id);
@@ -143,7 +143,7 @@ class Cart_model extends CI_Model
 
   function get_all_finished_back($invoice)
   {
-    $this->db->join('lapangan', 'transaksi_detail.lapangan_id = lapangan.id_lapangan');
+    $this->db->join('kamera', 'transaksi_detail.kamera_id = kamera.id_kamera');
     $this->db->join('transaksi', 'transaksi_detail.trans_id = transaksi.id_trans');
     $this->db->join('users', 'transaksi.user_id = users.id');
     $this->db->where('transaksi.id_trans', $invoice);
@@ -152,7 +152,7 @@ class Cart_model extends CI_Model
 
   function get_all_finished($invoice)
   {
-    $this->db->join('lapangan', 'transaksi_detail.lapangan_id = lapangan.id_lapangan');
+    $this->db->join('kamera', 'transaksi_detail.kamera_id = kamera.id_kamera');
     $this->db->join('transaksi', 'transaksi_detail.trans_id = transaksi.id_trans');
     $this->db->join('users', 'transaksi.user_id = users.id');
     $this->db->where('transaksi.id_trans', $invoice);
@@ -262,7 +262,7 @@ class Cart_model extends CI_Model
 
   function cart_history_detail()
   {
-    $this->db->join('lapangan', 'transaksi_detail.lapangan_id = lapangan.id_lapangan');
+    $this->db->join('kamera', 'transaksi_detail.kamera_id = kamera.id_kamera');
     $this->db->join('transaksi', 'transaksi_detail.trans_id = transaksi.id_trans');
     $this->db->join('users', 'transaksi_detail.user = users.id');
     $this->db->where('user', $this->session->userdata('user_id'));
@@ -272,7 +272,7 @@ class Cart_model extends CI_Model
 
   function history_detail($id)
   {
-    $this->db->join('lapangan', 'transaksi_detail.lapangan_id = lapangan.id_lapangan');
+    $this->db->join('kamera', 'transaksi_detail.kamera_id = kamera.id_kamera');
     $this->db->join('transaksi', 'transaksi_detail.trans_id = transaksi.id_trans');
     $this->db->join('users', 'transaksi.user_id = users.id');
     $this->db->where($this->id, $id);
@@ -292,12 +292,12 @@ class Cart_model extends CI_Model
 
   function get_bulan()
   {
-    $this->db->select('judul_lapangan, transaksi.created as tanggal');
+    $this->db->select('judul_kamera, transaksi.created as tanggal');
     $this->db->select_sum('total_qty');
     $this->db->join('transaksi_detail', 'transaksi.id_trans = transaksi_detail.trans_id');
-    $this->db->join('lapangan', 'transaksi_detail.lapangan_id = lapangan.id_lapangan');
+    $this->db->join('kamera', 'transaksi_detail.kamera_id = kamera.id_kamera');
     $this->db->where('month('.$this->db->dbprefix.'transaksi.created)', date('m'));
-    $this->db->group_by('lapangan_id');
+    $this->db->group_by('kamera_id');
     $this->db->order_by('tanggal', 'DESC');
     $this->db->limit(5);
     return $this->db->get($this->table)->result();
@@ -403,6 +403,16 @@ class Cart_model extends CI_Model
     $this->db->where('status','2');
 		$query = $this->db->get($this->table);
     return $query->row()->subtotal;
+  }
+
+
+  public function update_gambar($id_transaksi, $gambar_nama){
+    $data = array(
+      'gambar' => $gambar_nama
+    );
+
+    $this->db->where('id_trans', $id_transaksi);
+    $this->db->update('transaksi', $data);
   }
 
 }

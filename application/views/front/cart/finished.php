@@ -25,7 +25,7 @@
               <thead>
                 <tr>
 									<th style="text-align: center">No.</th>
-                  <th style="text-align: center">Lapangan</th>
+                  <th style="text-align: center">Kamera</th>
 									<th style="text-align: center">Harga Per Jam</th>
 									<th style="text-align: center">Tanggal</th>
                   <th style="text-align: center">Mulai</th>
@@ -38,7 +38,7 @@
               <?php $no=1; foreach ($cart_finished as $cart){ ?>
                 <tr>
                   <td style="text-align:center"><?php echo $no++ ?></td>
-                  <td style="text-align:left"><?php echo $cart->nama_lapangan ?></td>
+                  <td style="text-align:left"><?php echo $cart->nama_kamera ?></td>
 									<td style="text-align:center"><?php echo number_format($cart->harga_jual) ?></td>
 									<td style="text-align:center"><?php echo tgl_indo($cart->tanggal) ?></td>
                   <td style="text-align:center"><?php echo $cart->jam_mulai ?></td>
@@ -85,6 +85,27 @@
 			    <?php } else{echo "-";} ?>
 				</div>
 			</div>
+
+
+			
+<div class="row" style="padding-top:50px;">
+<label>UPLOAD BUKTI BAYAR</label><br>
+
+			<!-- fungsi upload gambar bukti  -->
+			<form action="<?= base_url('cart/upload_gambar/'.$cart_finished_row->id_trans); ?>" method="post" enctype="multipart/form-data">
+    <input type="file" name="userfile" size="20" />
+    <br /><br />
+    <input type="submit" value="Upload Bukti Bayar" />
+</form>
+
+<?php if ($this->session->flashdata('success_message')): ?>
+<div class="alert alert-success">
+    <?php echo $this->session->flashdata('success_message'); ?>
+</div>
+<?php endif; ?>
+</div>
+
+<!-- fungsi upload gambar  -->
 
 			<div class="row">
 				<div class="col-lg-12">

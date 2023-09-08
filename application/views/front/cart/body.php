@@ -24,7 +24,7 @@
 							<table id="datatable" class="table table-striped table-bordered">
 								<thead>
 									<tr>
-										<th style="text-align: center">Lapangan</th>
+										<th style="text-align: center">Kamera</th>
 										<th style="text-align: center">Harga</th>
 										<th style="text-align: center">Tanggal</th>
 										<th style="text-align: center">Jam Mulai</th>
@@ -38,14 +38,14 @@
 									<?php $no = 1;
 									foreach ($cart_data as $cart) { ?>
 										<tr>
-											<td style="text-align:left"><?php echo $cart->nama_lapangan ?></td>
+											<td style="text-align:left"><?php echo $cart->nama_kamera ?></td>
 											<td style="text-align:center" class="harga_per_jam"><?php echo number_format($cart->harga) ?></td>
 											<td style="text-align:center">
 												<?php echo form_input($tanggal) ?>
 												<input type="hidden" name="harga_jual[]" value="<?php echo $cart->harga ?>">
-												<input type="hidden" name="lapangan[]" value="<?php echo $cart->lapangan_id ?>">
+												<input type="hidden" name="kamera[]" value="<?php echo $cart->kamera_id ?>">
 												<input type="hidden" name="id_transdet[]" value="<?php echo $cart->id_transdet ?>">
-												<input type="hidden" value="<?php echo $cart->lapangan_id; ?>" class="lapangan_id">
+												<input type="hidden" value="<?php echo $cart->kamera_id; ?>" class="kamera_id">
 											</td>
 											<td style="text-align:center">
 												<?php echo form_dropdown('', array('' => '- Pilih Tanggal Dulu -'), '', $jam_mulai); ?>
@@ -103,7 +103,7 @@
 				<?php if (!empty($customer_data->id_trans)) { ?>
 					<div class="row">
 						<div class="col-lg-12">
-							<?php if (!empty($cek_keranjang->lapangan_id)) { ?>
+							<?php if (!empty($cek_keranjang->kamera_id)) { ?>
 								<a href="<?php echo base_url('cart/empty_cart/') . $customer_data->id_trans ?>">
 									<button name="hapus" type="button" class="btn btn-danger" aria-label="Left Align" title="Kosongkan Keranjang" OnClick="return confirm('Apakah Anda yakin?');">
 										<span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Kosongkan
@@ -154,14 +154,14 @@
 					durasi_el = tanggal_el.parent().parent().find(".durasi");
 					jam_selesai_el = durasi_el.parent().parent().find(".jam_selesai");
 					loading_container_el = tanggal_el.parent().parent().find(".loading_container");
-					lapangan_id_el = tanggal_el.parent().parent().find(".lapangan_id");
+					kamera_id_el = tanggal_el.parent().parent().find(".kamera_id");
 
 					jam_mulai_el.hide();
 					loading_container_el.show();
 
 					$.post('<?php echo base_url(); ?>Cart/getJamMulai', {
 							tanggal: tanggal_val,
-							lapangan_id: lapangan_id_el.val()
+							kamera_id: kamera_id_el.val()
 						}, function(data) {
 							jam_mulai_el.show();
 							loading_container_el.hide();

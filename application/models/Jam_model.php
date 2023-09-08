@@ -28,7 +28,7 @@ class Jam_model extends CI_Model{
 		// $sql = "
 		// 	SELECT
 		// 		jam
-		// 	FROM futsal_jam
+		// 	FROM kamera_jam
 		// 	WHERE (jam >= ? AND jam < ?)
 		// 		AND is_available = 1
 		// 	ORDER BY jam

@@ -8,6 +8,7 @@ class Transaksi extends CI_Controller
     $this->load->helper('tgl_indo');
     $this->load->model('Cart_model');
     $this->load->model('Company_model');
+    $this->load->model('Transaksi_detail_model');
 
     $this->data['module']         = 'Transaksi';
     $this->data['button_submit']  = 'Simpan';
@@ -30,7 +31,7 @@ class Transaksi extends CI_Controller
   public function create()
   {
     $this->load->model('Jam_model');
-    $this->load->model('Lapangan_model');
+    $this->load->model('Kamera_model');
 		$this->load->model('Transaksi_detail_model');
 
     $this->data['title'] = 'Tambah '.$this->data['module'].' Baru';
@@ -50,7 +51,7 @@ class Transaksi extends CI_Controller
       'required'    => '',
     );
 
-    $this->data['get_all']  = $this->Lapangan_model->get_all();
+    $this->data['get_all']  = $this->Kamera_model->get_all();
 
     $this->load->view('back/transaksi/transaksi_add', $this->data);
   }
@@ -225,14 +226,14 @@ class Transaksi extends CI_Controller
 
   public function getJamMulai(){
 		$tanggal = $this->input->post('tanggal');
-		$lapangan_id = $this->input->post('lapangan_id');
+		$kamera_id = $this->input->post('kamera_id');
 
-		if($tanggal === FALSE || $lapangan_id === FALSE){
+		if($tanggal === FALSE || $kamera_id === FALSE){
 			echo json_encode(array());
 			die();
 		}
 
-		$list_jam_mulai_terpakai = $this->Transaksi_detail_model->get_jam_mulai_terpakai($tanggal,$lapangan_id);
+		$list_jam_mulai_terpakai = $this->Transaksi_detail_model->get_jam_mulai_terpakai($tanggal,$kamera_id);
 
 		$list_jam_mulai_terpakai_arr = array();
 		foreach($list_jam_mulai_terpakai as $a_jam){
@@ -412,4 +413,38 @@ class Transaksi extends CI_Controller
     $this->form_validation->set_error_delimiters('<div class="alert alert-danger alert">', '</div>');
   }
 
+
+  // public function delete($id)
+  // {
+  //   $delete = $this->Transaksi_detail_model->delete($id);
+
+  //   //kalo data berhasil dihapus
+  //   if ($delete)
+  //   {
+  //     $this->Transaksi_detail_model->delete($id);
+
+  //     $this->session->set_flashdata('message', '<div class="alert alert-success alert">Hapus Data Berhasil</div>');
+  //     redirect(site_url('admin/transaksi'));
+  //   }
+  //   // kalo data gagal dihapus
+  //     else
+  //     {
+  //       $this->session->set_flashdata('message', '<div class="alert alert-danger alert">Hapus Data Gagal</div>');
+  //       redirect(site_url('admin/transaksi'));
+  //     }
+  // }
+
+  public function delete($id){
+    $this->Transaksi_detail_model->del_by_id($id);
+    $this->session->set_flashdata('message', '<div class="alert alert-success alert">Hapus Data Berhasil</div>');
+    redirect(site_url('admin/transaksi'));
+  }
+
+
+
+
+
+
 }
+
+

@@ -71,7 +71,7 @@ class Slider extends CI_Controller
         /* memanggil library upload ci */
         $config['upload_path']      = './assets/images/slider/';
         $config['allowed_types']    = 'jpg|jpeg|png|gif';
-        $config['max_size']         = '2048'; // 2 MB
+        $config['max_size']         = '5048'; // 2 MB
         $config['file_name']        = $nmfile; //nama yang terupload nantinya
 
         $this->load->library('upload', $config);
@@ -217,7 +217,7 @@ class Slider extends CI_Controller
         //load uploading file library
         $config['upload_path']      = './assets/images/slider/';
         $config['allowed_types']    = 'jpg|jpeg|png|gif';
-        $config['max_size']         = '2048'; // 2 MB
+        $config['max_size']         = '5048'; // 2 MB
         $config['file_name']        = $nmfile; //nama yang terupload nantinya
 
         $this->load->library('upload', $config);

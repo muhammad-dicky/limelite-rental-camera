@@ -4,7 +4,7 @@
   <?php foreach($kontak_sidebar as $kontak){?>
     <b><?php echo $kontak->nama_kontak ?></b><br>
     +<?php echo $kontak->nohp ?><br>
-    <a href="https://api.whatsapp.com/send?phone=+<?php echo $kontak->nohp ?>&text=Hi%20Gan,%20Saya%20mau%20booking%20lapangan">
+    <a href="https://api.whatsapp.com/send?phone=+<?php echo $kontak->nohp ?>&text=Hi%20Gan,%20Saya%20mau%20booking%20kamera">
       <button class="btn btn-success" type="submit" name="button">Chat via Whatsapp (klik disini)</button>
     </a><br><br>
   <?php } ?>
