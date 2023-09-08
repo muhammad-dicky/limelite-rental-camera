@@ -1,4 +1,6 @@
 # limelite-rental-camera
+![image](https://github.com/muhammad-dicky/limelite-rental-camera/assets/58357765/43ca8b62-820c-4683-8ccb-c5a4c8ce97f3)
+
 ## Limelite Rental Kamera
 
 Selamat datang di repositori Limelite Rental Kamera. Repositori ini adalah bagian dari proyek penyewaan kamera online yang dikembangkan dengan menggunakan CodeIgniter. Di bawah ini, Anda akan menemukan panduan untuk menginstal dan menjalankan proyek ini di lingkungan lokal Anda.
