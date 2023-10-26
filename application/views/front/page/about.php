@@ -32,7 +32,8 @@
 			</p>
 			<br>
 			<?php } ?>
-			<div style="width: 100%"><iframe width="100%" height="600" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?width=100%25&amp;height=600&amp;hl=en&amp;q=Jl.%20Kaliurang%20No.7,7,%20Ngabean%20Kulon,%20Sinduharjo,%20Kec.%20Ngaglik,%20Kabupaten%20Sleman,%20Daerah%20Istimewa%20Yogyakarta%2055581+(Jakal%207%20Futsal)&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"><a href="https://www.maps.ie/distance-area-calculator.html">measure distance on map</a></iframe></div>
+			
+				<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3953.9057520285787!2d110.59786997401184!3d-7.69326337618042!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e7a4378f920cf97%3A0x7c4156fef00a0343!2sLimelite%20Rental%20Kamera!5e0!3m2!1sid!2sid!4v1694185634129!5m2!1sid!2sid" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
 		</div>
 		<?php $this->load->view('front/sidebar'); ?>
 	</div>
