@@ -32,6 +32,7 @@
                         <th style="text-align: center">Harga per Jam</th>
                         <th style="text-align: center">Uploader</th>
                         <th style="text-align: center">Upload</th>
+                        <th style="text-align:center">Stok</th>
                         <th style="text-align: center">Updater</th>
                         <th style="text-align: center">Update</th>
 												<th style="text-align: center">Aksi</th>
@@ -45,6 +46,9 @@
                           <td style="text-align: center"><?php echo number_format($data->harga) ?></td>
                           <td style="text-align: center"><?php echo $data->created_by ?></td>
                           <td style="text-align: center"><?php echo $data->created_at ?></td>
+
+                          <td style="text-align: center"><?php echo $data->stok ?></td>
+
                           <td style="text-align: center"><?php echo $data->modified_by ?></td>
                           <td style="text-align: center"><?php echo $data->modified_at ?></td>
                           <td style="text-align: center">
