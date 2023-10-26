@@ -31,6 +31,7 @@
 												<th style="text-align: center">Nama Kamera</th>
                         <th style="text-align: center">Harga per Jam</th>
                         <th style="text-align: center">Uploader</th>
+                        <!-- wasd -->
                         <th style="text-align: center">Upload</th>
                         <th style="text-align:center">Stok</th>
                         <th style="text-align: center">Updater</th>
