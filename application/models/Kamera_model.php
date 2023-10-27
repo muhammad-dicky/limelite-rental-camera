@@ -230,4 +230,29 @@ class Kamera_model extends CI_Model
     return $this->db->get($this->table)->row();
   }
 
+
+
+
+
+
+  // function percobaan
+  public function kurangi_stok($id, $jumlah){
+    $kamera = $this->get_kamera_by_id($id);
+    if($kamera){
+      $new_stok = $kamera->jumlah - $jumlah;
+      $this->db->where('id', $id)->update('kamera', array('stok' => $new_stok));
+    
+    }
+  }
+
+ 
+  public function tambah_stok($id, $jumlah){
+$kamera = $this->get_kamera_by_id($id);
+if ($kamera) {
+  $new_stok = $kamera->jumlah + $jumlah;
+  $this->db->where('id', $id)->update('kamera', array('stok' => $new_stok));
+}
+  }
+
+
 }

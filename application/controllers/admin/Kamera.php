@@ -317,4 +317,16 @@ class Kamera extends CI_Controller
     $this->form_validation->set_error_delimiters('<div class="alert alert-danger alert">', '</div>');
   }
 
+
+
+  // public function kurangi_stok($kamera_id, $jumlah){
+    
+  //   $kamera = $this->Kamera_model->get_by_id($id);
+  //   $this->data['kamera'] = $this->Kamera_model->get_by_id($id);
+  //   if($kamera){
+  //     $new_stok = $kamera->jumlah - $jumlah;
+  //     $this->db->where('id', $kamera_id)->update
+  //   }
+  // }
+
 }
