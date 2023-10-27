@@ -197,9 +197,10 @@ class Cart extends CI_Controller
 				'tanggal'       => $this->input->post('tanggal[' . $i . ']'),
 				'jam_mulai'     => $this->input->post('jam_mulai[' . $i . ']'),
 				'durasi'        => $this->input->post('durasi[' . $i . ']'),
+				'jumlah'        => $this->input->post('jumlah[' . $i . ']'),
 				'harga_jual'    => $this->input->post('harga_jual[' . $i . ']'),
 				'jam_selesai'   => $this->input->post('jam_mulai[' . $i . ']') + $this->input->post('durasi[' . $i . ']') . ":00:00",
-				'total'   			=> $this->input->post('harga_jual[' . $i . ']') * $this->input->post('durasi[' . $i . ']'),
+				'total'   			=> $this->input->post('harga_jual[' . $i . ']') * $this->input->post('durasi[' . $i . ']') * $this->input->post('jumlah[' . $i . ']'),
 			);
 
 			$this->db->update_batch('transaksi_detail', $data_detail, 'id_transdet');

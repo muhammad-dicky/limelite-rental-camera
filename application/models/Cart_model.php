@@ -36,7 +36,7 @@ class Cart_model extends CI_Model
     $this->db->select('
     kamera.id_kamera, kamera.nama_kamera,
     transaksi.id_trans, transaksi.id_invoice, transaksi.user_id, transaksi.subtotal, transaksi.diskon, transaksi.grand_total, transaksi.deadline, transaksi.status, transaksi.catatan, transaksi.gambar, transaksi.created_date,
-    transaksi_detail.trans_id, transaksi_detail.kamera_id, transaksi_detail.tanggal, transaksi_detail.jam_mulai, transaksi_detail.durasi, transaksi_detail.jam_selesai, transaksi_detail.harga_jual, transaksi_detail.total,
+    transaksi_detail.trans_id, transaksi_detail.kamera_id, transaksi_detail.tanggal, transaksi_detail.jam_mulai, transaksi_detail.durasi,transaksi_detail.jumlah, transaksi_detail.jam_selesai, transaksi_detail.harga_jual, transaksi_detail.total,
     provinsi.nama_provinsi,kota.nama_kota,
     users.id, users.name, users.address
     ');
@@ -101,7 +101,7 @@ class Cart_model extends CI_Model
     $this->db->select('
     kamera.id_kamera, kamera.nama_kamera,
     transaksi.id_trans, transaksi.id_invoice, transaksi.user_id, transaksi.subtotal, transaksi.diskon, transaksi.grand_total, transaksi.deadline, transaksi.status, transaksi.catatan,
-    transaksi_detail.trans_id, transaksi_detail.kamera_id, transaksi_detail.tanggal, transaksi_detail.jam_mulai, transaksi_detail.durasi, transaksi_detail.jam_selesai, transaksi_detail.harga_jual, transaksi_detail.total,
+    transaksi_detail.trans_id, transaksi_detail.kamera_id, transaksi_detail.tanggal, transaksi_detail.jam_mulai, transaksi_detail.durasi, transaksi_detail.jumlah,transaksi_detail.jam_selesai, transaksi_detail.harga_jual, transaksi_detail.total,
     users.id
     ');
     $this->db->join('kamera', 'transaksi_detail.kamera_id = kamera.id_kamera');
