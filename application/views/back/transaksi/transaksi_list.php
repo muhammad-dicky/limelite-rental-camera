@@ -50,28 +50,37 @@
       									<td style="text-align:center"><?php echo number_format($data->jumlah) ?></a></td>
 
       									<td style="text-align:center"><?php echo number_format($data->grand_total) ?></a></td>
+
+
       									<td style="text-align:center">
                           <?php if($data->status == '0'){ ?>
-      		                  <button type="button" name="status" class="btn btn-primary"><i class="fa fa-ban"></i> BELUM CHECKOUT</button>
+      		                  <button id="statusButton" type="button" name="status" class="btn btn-primary"><i class="fa fa-ban"></i> BELUM CHECKOUT</button>
       		                <?php } elseif($data->status == '1'){ ?>
-      		                  <button type="button" name="status" class="btn btn-warning"><i class="fa fa-minus-circle"></i> BELUM LUNAS</button>
+      		                  <button id="statusButton" type="button" name="status" class="btn btn-warning"><i class="fa fa-minus-circle"></i> BELUM LUNAS</button>
       		                <?php } elseif($data->status == '2'){ ?>
-      		                  <button type="button" name="status" class="btn btn-success"><i class="fa fa-check"></i> LUNAS</button>
+      		                  <button id="statusButton" type="button" name="status" class="btn btn-success"><i class="fa fa-check"></i> LUNAS</button>
       		                <?php } elseif($data->status == '3'){ ?>
-      		                  <button type="button" name="status" class="btn btn-danger"><i class="fa fa-remove"></i> EXPIRED</button>
+      		                  <button id="statusButton" type="button" name="status" class="btn btn-danger"><i class="fa fa-remove"></i> EXPIRED</button>
+      		                <?php } elseif($data->status == '4'){ ?>
+      		                  <button id="statusButton" type="button" name="status" class="btn btn-success"><i class="fa fa-check"></i> DIKEMBALIKAN</button>
       		                <?php } ?>
       									</td>
+
+
+
+                        
+
       									<td style="text-align:center">
                           <?php if($data->status != '2'){ ?>
                             <a href="<?php echo base_url('admin/transaksi/set_lunas/').$data->id_trans ?>">
-                              <button name="update" class="btn btn-success"><i class="fa fa-check"></i> Set Lunas</button>
+                              <button id="setLunasButton" name="update" class="btn btn-success" ><i class="fa fa-check"></i> Set Lunas</button>
                             </a>
                           <?php } ?>
 
 
-                          <?php if($data->status != '3'){ ?>
+                          <?php if($data->status != '4'){ ?>
                             <a href="<?php echo base_url('admin/transaksi/set_pengembalian/').$data->id_trans ?>">
-                              <button name="update" class="btn btn-success"><i class="fa fa-check"></i> Set Pengembalian</button>
+                              <button id="setPengembalianButton" name="update" class="btn btn-success" "><i class="fa fa-check"></i> Set Pengembalian</button>
                             </a>
                           <?php } ?>
 
@@ -114,5 +123,44 @@
     "lengthMenu": [[10, 25, 50, 100, 500, 1000, -1], [10, 25, 50, 100, 500, 1000, "Semua"]]
   });
   </script>
+
+
+<script>
+  // Tangkap tombol "Set Lunas" dan "Set Pengembalian" dengan JavaScript
+  var setLunasButton = document.getElementById('setLunasButton');
+  var setPengembalianButton = document.getElementById('setPengembalianButton');
+  var statusButton = document.getElementById('statusButton');
+
+  // Ambil status dari tombol "statusButton"
+  var status = <?php echo $data->status; ?>;
+
+  // Berdasarkan status, atur tampilan tombol "Set Lunas" dan "Set Pengembalian"
+  if (status == 1) {
+    // Jika status adalah 1, tampilkan tombol "Set Lunas" dan sembunyikan tombol "Set Pengembalian"
+    setLunasButton.style.display = 'block';
+    setPengembalianButton.style.display = 'none';
+  } else if (status == 2) {
+    // Jika status adalah 2, sembunyikan tombol "Set Lunas" dan tampilkan tombol "Set Pengembalian"
+    setLunasButton.style.display = 'none';
+    setPengembalianButton.style.display = 'block';
+  }
+  else if (status == 4){
+    setLunasButton.style.display = 'none';
+    setPengembalianButton.style.display = 'none';
+  }
+  
+  // else if (status === 3){
+  //   setLunasButton.style.display = 'block';
+  //   setPengembalianButton.style.display = 'block';
+  // }
+  else {
+    // Untuk status lainnya, sembunyikan kedua tombol tersebut
+    setLunasButton.style.display = 'block';
+    setPengembalianButton.style.display = 'none';
+  }
+</script>
+
+
+
 </body>
 </html>

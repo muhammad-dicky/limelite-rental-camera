@@ -243,7 +243,7 @@ class Transaksi extends CI_Controller
       {
           $this->db->where('id_trans', $id);
           $this->db->update('transaksi', array(
-              'status' => '3', // Status kamera dikembalikan
+              'status' => '4', // Status kamera dikembalikan
           ));
   
           // Dapatkan informasi transaksi detail
