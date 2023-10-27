@@ -207,27 +207,15 @@ class Transaksi extends CI_Controller
       }
   }
 
+
+
   public function set_lunas($id)
   {
     $row = $this->Cart_model->get_by_id($id);
 
     if ($row)
     {
-
-      // batas atas percobaan
-      // $items = $this->Cart_model->get_by_id_detail($id);
-
-      // foreach ($items as $item) {
-      //   $id_kamera = $item->id_kamera;
-      //   $jumlah = $item->jumlah;
-
-      //  $this->Kamera_model->kurangi_stok($id_kamera, $jumlah);
-      // }
-
-      // batas bawah percobaan
     
-
-
       $this->db->where('id_trans', $id);
   		$this->db->update('transaksi', array(
   			'status'			=>	'2',
@@ -243,6 +231,48 @@ class Transaksi extends CI_Controller
         redirect(site_url('admin/transaksi'));
       }
   }
+
+
+  // atas percobaan
+
+  public function set_pengembalian($id)
+  {
+      $row = $this->Cart_model->get_by_id($id);
+  
+      if ($row)
+      {
+          $this->db->where('id_trans', $id);
+          $this->db->update('transaksi', array(
+              'status' => '3', // Status kamera dikembalikan
+          ));
+  
+          // Dapatkan informasi transaksi detail
+          $transaksi_detail = $this->Transaksi_detail_model->get_by_transaksi_id($id);
+  
+          // $this->Transaksi_detail_model->get($tanggal,$kamera_id);
+
+
+          // Inisialisasi model Kamera
+          $this->load->model('Kamera_model');
+  
+          foreach ($transaksi_detail as $detail) {
+              // Kurangi stok kamera menggunakan Kamera_model
+              $this->Kamera_model->tambah_stok_kamera($detail->kamera_id, $detail->jumlah);
+          }
+  
+          $this->session->set_flashdata('message', '<div class="alert alert-success alert">Kamera berhasil dikembalikan</div>');
+          redirect(site_url('admin/transaksi'));
+      } else {
+          $this->session->set_flashdata('message', '<div class="alert alert-warning alert">Transaksi tidak ditemukan</div>');
+          redirect(site_url('admin/transaksi'));
+      }
+  }
+  
+
+  // bawah percobaan 
+
+
+
 
   public function getJamMulai(){
 		$tanggal = $this->input->post('tanggal');

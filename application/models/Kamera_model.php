@@ -250,14 +250,22 @@ class Kamera_model extends CI_Model
       $this->db->set('jumlah', 'jumlah - ' . $jumlah, false); // Mengurangkan jumlah kamera
       $this->db->update('kamera');
   }
- 
-  public function tambah_stok($id, $jumlah){
-$kamera = $this->get_by_id($id);
-if ($kamera) {
-  $new_stok = $kamera->jumlah + $jumlah;
-  $this->db->where('id', $id)->update('kamera', array('jumlah' => $new_stok));
-}
+
+  
+  public function tambah_stok_kamera($id, $jumlah)
+  {
+      $this->db->where('id_kamera', $id);
+      $this->db->set('jumlah', 'jumlah + ' . $jumlah, false); // Mengurangkan jumlah kamera
+      $this->db->update('kamera');
   }
+ 
+//   public function tambah_stok($id, $jumlah){
+// $kamera = $this->get_by_id($id);
+// if ($kamera) {
+//   $new_stok = $kamera->jumlah + $jumlah;
+//   $this->db->where('id', $id)->update('kamera', array('jumlah' => $new_stok));
+// }
+//   }
 
 
   public function decreaseStock($id_kamera, $amount) {

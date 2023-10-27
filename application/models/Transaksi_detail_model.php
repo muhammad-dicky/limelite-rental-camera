@@ -4,6 +4,16 @@ class Transaksi_detail_model extends CI_Model{
 
 	public $table = 'transaksi';
 	public $id = 'id_trans';
+	public $id_transaksi_detail = 'id_transdet';
+
+
+	
+function get_by_transaksi_id( $id_transaksi_detail){
+
+	$this->db->where('trans_id', $id_transaksi_detail);
+	return $query = $this->db->get('transaksi_detail')->result();
+}
+	
 
 	function get_jam_mulai_terpakai($tanggal, $kamera_id){
 		$this->db->select('jam_mulai, durasi, jumlah, jam_selesai');

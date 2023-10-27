@@ -67,6 +67,15 @@
                               <button name="update" class="btn btn-success"><i class="fa fa-check"></i> Set Lunas</button>
                             </a>
                           <?php } ?>
+
+
+                          <?php if($data->status != '3'){ ?>
+                            <a href="<?php echo base_url('admin/transaksi/set_pengembalian/').$data->id_trans ?>">
+                              <button name="update" class="btn btn-success"><i class="fa fa-check"></i> Set Pengembalian</button>
+                            </a>
+                          <?php } ?>
+
+
                           <a href="<?php echo base_url('admin/transaksi/detail/').$data->id_trans ?>">
                             <button name="update" class="btn btn-primary"><i class="fa fa-search-plus"></i> Detail</button>
                           </a>
