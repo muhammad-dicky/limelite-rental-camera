@@ -6,7 +6,7 @@ class Transaksi_detail_model extends CI_Model{
 	public $id = 'id_trans';
 
 	function get_jam_mulai_terpakai($tanggal, $kamera_id){
-		$this->db->select('jam_mulai, durasi, jam_selesai');
+		$this->db->select('jam_mulai, durasi, jumlah, jam_selesai');
 		$this->db->where('tanggal', $tanggal);
 		$this->db->where('kamera_id', $kamera_id);
 		return $query = $this->db->get('transaksi_detail')->result();

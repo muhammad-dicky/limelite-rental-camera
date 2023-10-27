@@ -29,6 +29,10 @@
                         <th style="text-align: center">Invoice</th>
                         <th style="text-align: center">Atas Nama</th>
       									<th style="text-align: center">Dibuat</th>
+
+                        <!-- percobaan jumlah -->
+      									<th style="text-align: center">Jumlah</th>
+
       									<th style="text-align: center">Grand Total</th>
       									<th style="text-align: center">Status</th>
       									<!-- <th style="text-align: center">Bukti Bayar</th> -->
@@ -41,6 +45,10 @@
                         <td style="text-align:center"><?php echo $data->id_invoice ?></a></td>
                         <td style="text-align:center"><?php echo $data->name ?></a></td>
       									<td style="text-align:center"><?php echo tgl_indo($data->created_date) ?></td>
+
+                        <!-- percobaan jumlah -->
+      									<td style="text-align:center"><?php echo number_format($data->jumlah) ?></a></td>
+
       									<td style="text-align:center"><?php echo number_format($data->grand_total) ?></a></td>
       									<td style="text-align:center">
                           <?php if($data->status == '0'){ ?>

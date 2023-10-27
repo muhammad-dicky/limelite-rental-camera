@@ -17,11 +17,18 @@ class Cart_model extends CI_Model
   }
 
   // BACKEND //
-  function get_all()
-  {
+  public function get_all() {
+    // Join 'transaksi' with 'users' using a common field, for example, 'user_id'
     $this->db->join('users', 'transaksi.user_id = users.id');
+    
+    $this->db->join('transaksi_detail', 'transaksi.id_trans = transaksi_detail.trans_id');
+    
+    // Get the result
     return $this->db->get($this->table)->result();
-  }
+}
+
+
+
 
   function top5_transaksi()
   {
