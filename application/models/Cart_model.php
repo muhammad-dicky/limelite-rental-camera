@@ -17,11 +17,18 @@ class Cart_model extends CI_Model
   }
 
   // BACKEND //
-  function get_all()
-  {
+  public function get_all() {
+    // Join 'transaksi' with 'users' using a common field, for example, 'user_id'
     $this->db->join('users', 'transaksi.user_id = users.id');
+    
+    $this->db->join('transaksi_detail', 'transaksi.id_trans = transaksi_detail.trans_id');
+    
+    // Get the result
     return $this->db->get($this->table)->result();
-  }
+}
+
+
+
 
   function top5_transaksi()
   {
@@ -36,7 +43,7 @@ class Cart_model extends CI_Model
     $this->db->select('
     kamera.id_kamera, kamera.nama_kamera,
     transaksi.id_trans, transaksi.id_invoice, transaksi.user_id, transaksi.subtotal, transaksi.diskon, transaksi.grand_total, transaksi.deadline, transaksi.status, transaksi.catatan, transaksi.gambar, transaksi.created_date,
-    transaksi_detail.trans_id, transaksi_detail.kamera_id, transaksi_detail.tanggal, transaksi_detail.jam_mulai, transaksi_detail.durasi, transaksi_detail.jam_selesai, transaksi_detail.harga_jual, transaksi_detail.total,
+    transaksi_detail.trans_id, transaksi_detail.kamera_id, transaksi_detail.tanggal, transaksi_detail.jam_mulai, transaksi_detail.durasi,transaksi_detail.jumlah, transaksi_detail.jam_selesai, transaksi_detail.harga_jual, transaksi_detail.total,
     provinsi.nama_provinsi,kota.nama_kota,
     users.id, users.name, users.address
     ');
@@ -101,7 +108,7 @@ class Cart_model extends CI_Model
     $this->db->select('
     kamera.id_kamera, kamera.nama_kamera,
     transaksi.id_trans, transaksi.id_invoice, transaksi.user_id, transaksi.subtotal, transaksi.diskon, transaksi.grand_total, transaksi.deadline, transaksi.status, transaksi.catatan,
-    transaksi_detail.trans_id, transaksi_detail.kamera_id, transaksi_detail.tanggal, transaksi_detail.jam_mulai, transaksi_detail.durasi, transaksi_detail.jam_selesai, transaksi_detail.harga_jual, transaksi_detail.total,
+    transaksi_detail.trans_id, transaksi_detail.kamera_id, transaksi_detail.tanggal, transaksi_detail.jam_mulai, transaksi_detail.durasi, transaksi_detail.jumlah,transaksi_detail.jam_selesai, transaksi_detail.harga_jual, transaksi_detail.total,
     users.id
     ');
     $this->db->join('kamera', 'transaksi_detail.kamera_id = kamera.id_kamera');
@@ -414,5 +421,25 @@ class Cart_model extends CI_Model
     $this->db->where('id_trans', $id_transaksi);
     $this->db->update('transaksi', $data);
   }
+
+
+
+
+
+
+  public function decreaseStock($id_kamera, $amount) {
+    $kamera = $this->get_kamera_by_id($id_kamera);
+    if ($kamera) {
+        $new_stok = $kamera->jumlah - $amount;
+
+        // Pastikan stok tidak menjadi negatif
+        if ($new_stok >= 0) {
+            $this->db->where('id', $id_kamera)->update('kamera', array('jumlah' => $new_stok));
+        } else {
+            // Handle kesalahan, misalnya stok tidak mencukupi
+            // Kamu dapat melemparkan exception atau menangani kesalahan lain sesuai kebutuhan
+        }
+    }
+}
 
 }

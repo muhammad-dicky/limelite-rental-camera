@@ -188,19 +188,29 @@ class Cart extends CI_Controller
 		redirect(site_url('cart'));
 	}
 
+
+
 	public function checkout()
 	{
 		$count = count($this->input->post('kamera'));
+
 		for ($i = 0; $i < $count; $i++) {
 			$data_detail[$i] = array(
 				'id_transdet'   => $this->input->post('id_transdet[' . $i . ']'),
 				'tanggal'       => $this->input->post('tanggal[' . $i . ']'),
 				'jam_mulai'     => $this->input->post('jam_mulai[' . $i . ']'),
 				'durasi'        => $this->input->post('durasi[' . $i . ']'),
+				'jumlah'        => $this->input->post('jumlah[' . $i . ']'),
 				'harga_jual'    => $this->input->post('harga_jual[' . $i . ']'),
 				'jam_selesai'   => $this->input->post('jam_mulai[' . $i . ']') + $this->input->post('durasi[' . $i . ']') . ":00:00",
-				'total'   			=> $this->input->post('harga_jual[' . $i . ']') * $this->input->post('durasi[' . $i . ']'),
+				'total'   			=> $this->input->post('harga_jual[' . $i . ']') * $this->input->post('durasi[' . $i . ']') * $this->input->post('jumlah[' . $i . ']'),
 			);
+
+
+			// percobaan atas
+
+$this->Kamera_model->kurangi_stok_kamera($this->input->post('kamera[' . $i . ']'), $this->input->post('jumlah[' . $i . ']'));
+			// bawah
 
 			$this->db->update_batch('transaksi_detail', $data_detail, 'id_transdet');
 		}
@@ -236,6 +246,11 @@ class Cart extends CI_Controller
 
 		redirect(site_url('cart/finished'));
 	}
+
+
+
+
+
 
 	public function finished()
 	{

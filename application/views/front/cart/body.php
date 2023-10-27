@@ -26,6 +26,7 @@
 									<tr>
 										<th style="text-align: center">Kamera</th>
 										<th style="text-align: center">Harga</th>
+										<th style="text-align: center">Jumlah</th>
 										<th style="text-align: center">Tanggal</th>
 										<th style="text-align: center">Jam Mulai</th>
 										<th style="text-align: center">Durasi</th>
@@ -40,6 +41,13 @@
 										<tr>
 											<td style="text-align:left"><?php echo $cart->nama_kamera ?></td>
 											<td style="text-align:center" class="harga_per_jam"><?php echo number_format($cart->harga) ?></td>
+
+											<!-- percobaan order dengan stock -->
+											<td style="text-align:center">
+												<input type="number" name="jumlah[]" class="jumlah" min="1">
+											</td>
+
+
 											<td style="text-align:center">
 												<?php echo form_input($tanggal) ?>
 												<input type="hidden" name="harga_jual[]" value="<?php echo $cart->harga ?>">
@@ -152,6 +160,10 @@
 					tanggal_val = $(this).val();
 					jam_mulai_el = tanggal_el.parent().parent().find(".jam_mulai");
 					durasi_el = tanggal_el.parent().parent().find(".durasi");
+
+					// percobaan jumlah
+					jumlah_el = tanggal_el.parent().parent().find(".jumlah");
+
 					jam_selesai_el = durasi_el.parent().parent().find(".jam_selesai");
 					loading_container_el = tanggal_el.parent().parent().find(".loading_container");
 					kamera_id_el = tanggal_el.parent().parent().find(".kamera_id");
@@ -171,13 +183,26 @@
 
 							count = 0;
 
+							// bentuk sebelumnya
+							// data.forEach(function(item, index) {
+							// 	// console.log(item);
+							// 	jam_mulai_el.append("<option durasi='" + item.durasi + "'>" + item.jam_mulai + "</option>");
+							// 	count++;
+							// });
+
 							data.forEach(function(item, index) {
 								// console.log(item);
-								jam_mulai_el.append("<option durasi='" + item.durasi + "'>" + item.jam_mulai + "</option>");
+								jam_mulai_el.append("<option durasi='" + item.durasi + item.jumlah + "'>" + item.jam_mulai + "</option>");
+								count++;
+							});
+							data.forEach(function(item, index) {
+								// console.log(item);
+								jam_mulai_el.append("<option jumlah='" + item.durasi + item.jumlah + "'>" + item.jam_mulai + "</option>");
 								count++;
 							});
 
 							durasi_el.val(0);
+							jumlah_el.val(0);
 							jam_selesai_el.html("");
 
 							if (count == 0) {
@@ -193,58 +218,82 @@
 				$(document).on("change", ".jam_mulai", function() {
 					jam_mulai_el = $(this);
 					durasi_el = jam_mulai_el.parent().parent().find(".durasi");
+					jumlah_el = jam_mulai_el.parent().parent().find(".jumlah");
 					durasi_el.val(jam_mulai_el.find(":selected").attr("durasi")).change();
+					jumlah_el.val(jam_mulai_el.find(":selected").attr("jumlah")).change();
 				});
 
-				$(document).on("change keyup", ".durasi", function() {
-					durasi_el = $(this);
-					durasi = $(this).val();
+				// Existing code for "durasi" field
+$(document).on("change keyup", ".durasi", function() {
+    updateSubtotalAndTotalPrice($(this));
+});
 
-					if (durasi == "") {
-						durasi = 0;
-						durasi_el.val(durasi);
-					}
+// New code for "jumlah" field
+$(document).on("change keyup", ".jumlah", function() {
+    updateSubtotalAndTotalPrice($(this));
+});
 
-					jam_mulai_el = durasi_el.parent().parent().find(".jam_mulai");
-					jam_selesai_el = durasi_el.parent().parent().find(".jam_selesai");
+// Function to update the subtotal and total price
+function updateSubtotalAndTotalPrice(element) {
+    var input_el = element;
+    var durasi_el = input_el.parent().parent().find(".durasi");
+    var jumlah_el = input_el.parent().parent().find(".jumlah");
+    var jam_mulai_el = durasi_el.parent().parent().find(".jam_mulai");
+    var jam_selesai_el = durasi_el.parent().parent().find(".jam_selesai");
+    var harga_per_jam_el = durasi_el.parent().parent().find(".harga_per_jam");
+    var subtotal_el = durasi_el.parent().parent().find(".subtotal");
 
-					harga_per_jam_el = durasi_el.parent().parent().find(".harga_per_jam");
-					subtotal_el = durasi_el.parent().parent().find(".subtotal");
+    var durasi = durasi_el.val() || 0;
+    var jumlah = jumlah_el.val() || 0;
 
-					if (jam_mulai_el.val() != "") {
-						jam_selesai = moment("01-01-2018 " + jam_mulai_el.val(), "MM-DD-YYYY HH:mm:ss").add(parseInt(durasi), 'hours').format('HH:mm:ss');
-						jam_selesai_el.html(jam_selesai);
+    if (jam_mulai_el.val() != "") {
+        var jam_selesai = moment("01-01-2018 " + jam_mulai_el.val(), "MM-DD-YYYY HH:mm:ss")
+            .add(parseInt(durasi), 'hours')
+            .format('HH:mm:ss');
+        jam_selesai_el.html(jam_selesai);
 
-						harga_per_jam = harga_per_jam_el.html().replace(/,/g, '');
-						harga_per_jam_int = parseInt(harga_per_jam);
+        var harga_per_jam = harga_per_jam_el.html().replace(/,/g, '');
+        var harga_per_jam_int = parseInt(harga_per_jam);
 
-						subtotal_el.html(numberWithCommas(harga_per_jam_int * parseInt(durasi)));
+        // Calculate the new subtotal based on both durasi and jumlah
+        var subtotal = harga_per_jam_int * (parseInt(durasi) * parseInt(jumlah));
+        subtotal_el.html(numberWithCommas(subtotal));
 
-						subtotal_bawah = 0;
-						$('.subtotal').each(function(i, obj) {
-							a_subtotal_html = $(this).html().trim().replace(/,/g, '');
-							if (a_subtotal_html == "") {
-								a_subtotal_html = "0";
-							}
+        updateTotalPrice();
+    }
+}
 
-							a_subtotal_html_int = parseInt(a_subtotal_html);
-							subtotal_bawah += a_subtotal_html_int;
-						});
+// Function to update the total price
+function updateTotalPrice() {
+    var subtotal_bawah = 0;
+    $('.subtotal').each(function(i, obj) {
+        a_subtotal_html = $(this).html().trim().replace(/,/g, '');
+        if (a_subtotal_html == "") {
+            a_subtotal_html = "0";
+        }
 
-						<?php if ($this->session->userdata('usertype') == '3') {
-							echo "var disc = '" . $diskon['harga'] . "';"; ?>
-						<?php } else {
-							echo "var disc = '0';";
-						} ?>
+        a_subtotal_html_int = parseInt(a_subtotal_html);
+        subtotal_bawah += a_subtotal_html_int;
+    });
 
-						var diskon = $('#diskon').val();
+    <?php if ($this->session->userdata('usertype') == '3') {
+        echo "var disc = '" . $diskon['harga'] . "';";
+    } else {
+        echo "var disc = '0';";
+    } ?>
 
-						$("#subtotal_bawah").html(numberWithCommas(subtotal_bawah));
-						$("#diskon").html(numberWithCommas(disc));
-						var gtotal = (subtotal_bawah - disc);
-						$("#grandtotal").html(numberWithCommas(gtotal));
-					}
-				});
+    var diskon = $('#diskon').val();
+
+    $("#subtotal_bawah").html(numberWithCommas(subtotal_bawah));
+    $("#diskon").html(numberWithCommas(disc));
+    var gtotal = (subtotal_bawah - disc);
+    $("#grandtotal").html(numberWithCommas(gtotal));
+}
+
+
+
+
+
 			});
 		</script>
 	</div>

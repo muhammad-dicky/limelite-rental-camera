@@ -230,4 +230,58 @@ class Kamera_model extends CI_Model
     return $this->db->get($this->table)->row();
   }
 
+
+
+
+
+
+  // function percobaan
+  // public function kurangi_stok($id, $jumlah){
+  //   $kamera = $this->get_by_id()($id);
+  //   if($kamera){
+  //     $new_stok = $kamera->jumlah - $jumlah;
+  //     $this->db->where('id', $id)->update('kamera', array('jumlah' => $new_stok));
+    
+  //   }
+  // }
+  public function kurangi_stok_kamera($id, $jumlah)
+  {
+      $this->db->where('id_kamera', $id);
+      $this->db->set('jumlah', 'jumlah - ' . $jumlah, false); // Mengurangkan jumlah kamera
+      $this->db->update('kamera');
+  }
+
+  
+  public function tambah_stok_kamera($id, $jumlah)
+  {
+      $this->db->where('id_kamera', $id);
+      $this->db->set('jumlah', 'jumlah + ' . $jumlah, false); // Mengurangkan jumlah kamera
+      $this->db->update('kamera');
+  }
+ 
+//   public function tambah_stok($id, $jumlah){
+// $kamera = $this->get_by_id($id);
+// if ($kamera) {
+//   $new_stok = $kamera->jumlah + $jumlah;
+//   $this->db->where('id', $id)->update('kamera', array('jumlah' => $new_stok));
+// }
+//   }
+
+
+  public function decreaseStock($id_kamera, $amount) {
+    $kamera = $this->get_by_id()($id_kamera);
+    if ($kamera) {
+        $new_stok = $kamera->jumlah - $amount;
+
+        // Pastikan stok tidak menjadi negatif
+        if ($new_stok >= 0) {
+            $this->db->where('id', $id_kamera)->update('kamera', array('jumlah' => $new_stok));
+        } else {
+            // Handle kesalahan, misalnya stok tidak mencukupi
+            // Kamu dapat melemparkan exception atau menangani kesalahan lain sesuai kebutuhan
+        }
+    }
+}
+
+
 }

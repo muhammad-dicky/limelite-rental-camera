@@ -10,6 +10,10 @@ class Transaksi extends CI_Controller
     $this->load->model('Company_model');
     $this->load->model('Transaksi_detail_model');
 
+    // bagian percobaan
+    $this->load->model('Kamera_model');
+
+
     $this->data['module']         = 'Transaksi';
     $this->data['button_submit']  = 'Simpan';
     $this->data['button_reset']   = 'Reset';
@@ -24,6 +28,7 @@ class Transaksi extends CI_Controller
   {
     $this->data['title']    = 'Data '.$this->data['module'];
     $this->data['get_all']  = $this->Cart_model->get_all();
+
 
     $this->load->view('back/transaksi/transaksi_list',$this->data);
   }
@@ -202,12 +207,15 @@ class Transaksi extends CI_Controller
       }
   }
 
+
+
   public function set_lunas($id)
   {
     $row = $this->Cart_model->get_by_id($id);
 
     if ($row)
     {
+    
       $this->db->where('id_trans', $id);
   		$this->db->update('transaksi', array(
   			'status'			=>	'2',
@@ -223,6 +231,48 @@ class Transaksi extends CI_Controller
         redirect(site_url('admin/transaksi'));
       }
   }
+
+
+  // atas percobaan
+
+  public function set_pengembalian($id)
+  {
+      $row = $this->Cart_model->get_by_id($id);
+  
+      if ($row)
+      {
+          $this->db->where('id_trans', $id);
+          $this->db->update('transaksi', array(
+              'status' => '3', // Status kamera dikembalikan
+          ));
+  
+          // Dapatkan informasi transaksi detail
+          $transaksi_detail = $this->Transaksi_detail_model->get_by_transaksi_id($id);
+  
+          // $this->Transaksi_detail_model->get($tanggal,$kamera_id);
+
+
+          // Inisialisasi model Kamera
+          $this->load->model('Kamera_model');
+  
+          foreach ($transaksi_detail as $detail) {
+              // Kurangi stok kamera menggunakan Kamera_model
+              $this->Kamera_model->tambah_stok_kamera($detail->kamera_id, $detail->jumlah);
+          }
+  
+          $this->session->set_flashdata('message', '<div class="alert alert-success alert">Kamera berhasil dikembalikan</div>');
+          redirect(site_url('admin/transaksi'));
+      } else {
+          $this->session->set_flashdata('message', '<div class="alert alert-warning alert">Transaksi tidak ditemukan</div>');
+          redirect(site_url('admin/transaksi'));
+      }
+  }
+  
+
+  // bawah percobaan 
+
+
+
 
   public function getJamMulai(){
 		$tanggal = $this->input->post('tanggal');
@@ -439,6 +489,7 @@ class Transaksi extends CI_Controller
     $this->session->set_flashdata('message', '<div class="alert alert-success alert">Hapus Data Berhasil</div>');
     redirect(site_url('admin/transaksi'));
   }
+
 
 
 
