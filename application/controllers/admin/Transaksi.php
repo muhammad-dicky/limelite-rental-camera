@@ -10,6 +10,10 @@ class Transaksi extends CI_Controller
     $this->load->model('Company_model');
     $this->load->model('Transaksi_detail_model');
 
+    // bagian percobaan
+    $this->load->model('Kamera_model');
+
+
     $this->data['module']         = 'Transaksi';
     $this->data['button_submit']  = 'Simpan';
     $this->data['button_reset']   = 'Reset';
@@ -24,6 +28,7 @@ class Transaksi extends CI_Controller
   {
     $this->data['title']    = 'Data '.$this->data['module'];
     $this->data['get_all']  = $this->Cart_model->get_all();
+
 
     $this->load->view('back/transaksi/transaksi_list',$this->data);
   }
@@ -208,6 +213,21 @@ class Transaksi extends CI_Controller
 
     if ($row)
     {
+
+      // batas atas percobaan
+      // $items = $this->Cart_model->get_by_id_detail($id);
+
+      // foreach ($items as $item) {
+      //   $id_kamera = $item->id_kamera;
+      //   $jumlah = $item->jumlah;
+
+      //  $this->Kamera_model->kurangi_stok($id_kamera, $jumlah);
+      // }
+
+      // batas bawah percobaan
+    
+
+
       $this->db->where('id_trans', $id);
   		$this->db->update('transaksi', array(
   			'status'			=>	'2',
@@ -439,6 +459,7 @@ class Transaksi extends CI_Controller
     $this->session->set_flashdata('message', '<div class="alert alert-success alert">Hapus Data Berhasil</div>');
     redirect(site_url('admin/transaksi'));
   }
+
 
 
 

@@ -422,4 +422,24 @@ class Cart_model extends CI_Model
     $this->db->update('transaksi', $data);
   }
 
+
+
+
+
+
+  public function decreaseStock($id_kamera, $amount) {
+    $kamera = $this->get_kamera_by_id($id_kamera);
+    if ($kamera) {
+        $new_stok = $kamera->jumlah - $amount;
+
+        // Pastikan stok tidak menjadi negatif
+        if ($new_stok >= 0) {
+            $this->db->where('id', $id_kamera)->update('kamera', array('jumlah' => $new_stok));
+        } else {
+            // Handle kesalahan, misalnya stok tidak mencukupi
+            // Kamu dapat melemparkan exception atau menangani kesalahan lain sesuai kebutuhan
+        }
+    }
+}
+
 }
