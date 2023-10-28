@@ -133,18 +133,27 @@
 
   // Ambil status dari tombol "statusButton"
   var status = <?php echo $data->status; ?>;
+ 
 
   // Berdasarkan status, atur tampilan tombol "Set Lunas" dan "Set Pengembalian"
   if (status == 1) {
+    // BELUM LUNAS
     // Jika status adalah 1, tampilkan tombol "Set Lunas" dan sembunyikan tombol "Set Pengembalian"
     setLunasButton.style.display = 'block';
     setPengembalianButton.style.display = 'none';
   } else if (status == 2) {
+    // LUNAS
     // Jika status adalah 2, sembunyikan tombol "Set Lunas" dan tampilkan tombol "Set Pengembalian"
     setLunasButton.style.display = 'none';
     setPengembalianButton.style.display = 'block';
   }
+  else if (status == 3){
+    // EXPIRED
+    setLunasButton.style.display = 'none';
+    setPengembalianButton.style.display = 'none';
+  }
   else if (status == 4){
+    // DIKEMBALIKAN
     setLunasButton.style.display = 'none';
     setPengembalianButton.style.display = 'none';
   }
@@ -155,7 +164,7 @@
   // }
   else {
     // Untuk status lainnya, sembunyikan kedua tombol tersebut
-    setLunasButton.style.display = 'block';
+    setLunasButton.style.display = 'none';
     setPengembalianButton.style.display = 'none';
   }
 </script>
