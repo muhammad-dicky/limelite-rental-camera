@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 08, 2023 at 04:51 PM
+-- Generation Time: Oct 30, 2023 at 02:12 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.0.28
 
@@ -252,20 +252,23 @@ CREATE TABLE `kamera` (
   `created_by` varchar(50) NOT NULL,
   `created_at` datetime NOT NULL,
   `modified_by` varchar(50) NOT NULL,
-  `modified_at` datetime NOT NULL
+  `modified_at` datetime NOT NULL,
+  `jumlah` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `kamera`
 --
 
-INSERT INTO `kamera` (`id_kamera`, `nama_kamera`, `harga`, `foto`, `created_by`, `created_at`, `modified_by`, `modified_at`) VALUES
-(12, 'Canon 5D Mark III (Body Only) + 16GB', 10000, 'canon-5d-mark-iii-body-only-16gb-cf-extreme-card20230908140029.png', 'superadmin', '0000-00-00 00:00:00', 'superadmin', '0000-00-00 00:00:00'),
-(13, 'Canon 6D (Body Only) + 16GB SD Extreme Card', 20000, 'canon-6d-body-only-16gb-sd-extreme-card20230908135328.png', 'superadmin', '0000-00-00 00:00:00', 'superadmin', '0000-00-00 00:00:00'),
-(14, 'Canon 7D Mark II (Body Only) + 16GB CF Extreme Card', 25000, 'canon-7d-mark-ii-body-only-16gb-cf-extreme-card20230908135441.png', 'superadmin', '0000-00-00 00:00:00', '', '0000-00-00 00:00:00'),
-(15, 'Canon 7D (Body Only) + 16GB CF Extreme Card', 30000, 'canon-7d-body-only-16gb-cf-extreme-card20230908135542.png', 'superadmin', '0000-00-00 00:00:00', '', '0000-00-00 00:00:00'),
-(16, 'Canon 80D (Body Only) + 16GB SD Extreme Pro Card', 20000, 'canon-80d-body-only-16gb-sd-extreme-pro-card20230908135644.png', 'superadmin', '0000-00-00 00:00:00', '', '0000-00-00 00:00:00'),
-(19, 'Nikon AF 24mm f/2.8D', 30000, 'nikon-af-24mm-f28d20230908135918.png', 'superadmin', '0000-00-00 00:00:00', '', '0000-00-00 00:00:00');
+INSERT INTO `kamera` (`id_kamera`, `nama_kamera`, `harga`, `foto`, `created_by`, `created_at`, `modified_by`, `modified_at`, `jumlah`) VALUES
+(12, 'Canon 5D Mark III (Body Only) + 16GB', 10000, 'canon-5d-mark-iii-body-only-16gb-cf-extreme-card20230908140029.png', 'superadmin', '0000-00-00 00:00:00', 'superadmin', '0000-00-00 00:00:00', 17),
+(13, 'Canon 6D (Body Only) + 16GB SD Extreme Card', 20000, 'canon-6d-body-only-16gb-sd-extreme-card20230908135328.png', 'superadmin', '0000-00-00 00:00:00', 'superadmin', '0000-00-00 00:00:00', 11),
+(14, 'Canon 7D Mark II (Body Only) + 16GB CF Extreme Card', 25000, 'canon-7d-mark-ii-body-only-16gb-cf-extreme-card20230908135441.png', 'superadmin', '0000-00-00 00:00:00', '', '0000-00-00 00:00:00', 16),
+(15, 'Canon 7D (Body Only) + 16GB CF Extreme Card', 30000, 'canon-7d-body-only-16gb-cf-extreme-card20230908135542.png', 'superadmin', '0000-00-00 00:00:00', '', '0000-00-00 00:00:00', 5),
+(16, 'Canon 80D (Body Only) + 16GB SD Extreme Pro Card', 20000, 'canon-80d-body-only-16gb-sd-extreme-pro-card20230908135644.png', 'superadmin', '0000-00-00 00:00:00', '', '0000-00-00 00:00:00', 9),
+(19, 'Nikon AF 24mm f/2.8D', 30000, 'nikon-af-24mm-f28d20230908135918.png', 'superadmin', '0000-00-00 00:00:00', '', '0000-00-00 00:00:00', 7),
+(20, 'CONTOH KAMERA', 10000, 'contoh-kamera20231028220319.png', 'superadmin', '0000-00-00 00:00:00', '', '0000-00-00 00:00:00', 10),
+(21, 'percobaaaaan', 20000, 'percobaaaaan20231030200831.png', 'superadmin', '0000-00-00 00:00:00', 'superadmin', '0000-00-00 00:00:00', 30);
 
 -- --------------------------------------------------------
 
@@ -845,15 +848,6 @@ CREATE TABLE `login_attempts` (
   `time` int(10) UNSIGNED DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
---
--- Dumping data for table `login_attempts`
---
-
-INSERT INTO `login_attempts` (`id`, `ip_address`, `login`, `time`) VALUES
-(7, '::1', 'admin@gmail.com', 1694183362),
-(8, '::1', 'administrator', 1694183381),
-(9, '::1', 'adminministrator@gmail.com', 1694183397);
-
 -- --------------------------------------------------------
 
 --
@@ -998,16 +992,12 @@ CREATE TABLE `transaksi` (
 --
 
 INSERT INTO `transaksi` (`id_trans`, `id_invoice`, `user_id`, `subtotal`, `diskon`, `grand_total`, `deadline`, `catatan`, `status`, `created_date`, `created_time`, `gambar`) VALUES
-(1, 'J-210517-0001', 3, 100000, 0, 100000, '2023-01-04 00:00:00', '', 2, '2023-01-05', '08:03:19', NULL),
-(2, 'J-210517-0002', 4, 260000, 50000, 210000, '2023-01-04 00:00:00', 'takada', 2, '2023-01-05', '08:09:54', NULL),
 (3, 'J-210516-0003', 3, 300000, 0, 300000, '2023-01-04 00:00:00', '', 2, '2023-01-05', '08:20:09', NULL),
-(4, 'J-210408-0001', 3, 330000, 0, 330000, '2023-01-04 00:00:00', '', 2, '2023-01-05', '08:21:35', NULL),
-(10, 'J-230221-0002', 6, 110, 0, 110, '2023-02-21 22:00:24', '', 1, '2023-02-21', '08:59:57', NULL),
-(12, 'J-230907-0001', 6, 90000, 0, 90000, '2023-09-07 23:23:29', '', 1, '2023-09-07', '10:23:23', NULL),
-(13, 'J-230908-0002', 6, 110000, 0, 110000, '2023-09-08 08:20:05', '', 1, '2023-09-08', '07:19:59', NULL),
-(14, 'J-230908-0003', 6, 110000, 0, 110000, '2023-09-08 09:14:06', '', 1, '2023-09-08', '08:13:53', 'amikom3.png'),
-(15, 'J-230908-0004', 6, 90000, 0, 90000, '2023-09-08 09:54:28', '', 1, '2023-09-08', '08:54:23', NULL),
-(16, 'J-230908-0005', 6, 20000, 0, 20000, '2023-09-08 14:28:21', '', 1, '2023-09-08', '01:28:03', 'amikom4.png');
+(38, 'J-231028-0022', 6, 60000, 0, 60000, '2023-10-28 23:04:59', '', 4, '2023-10-28', '10:04:34', NULL),
+(39, 'J-231028-0023', 6, 40000, 0, 40000, '2023-10-28 23:07:52', '', 4, '2023-10-28', '10:07:43', NULL),
+(40, 'J-231028-0024', 6, 40000, 0, 40000, '2023-10-28 23:15:11', '', 4, '2023-10-28', '10:15:01', NULL),
+(41, 'J-231028-0025', 6, 80000, 0, 80000, '2023-10-28 23:44:17', '', 4, '2023-10-28', '10:44:06', NULL),
+(42, 'J-231028-0026', 6, 40000, 0, 40000, '2023-10-29 00:44:25', '', 4, '2023-10-28', '11:43:47', 'Screenshot_2023-10-26_0350513.png');
 
 -- --------------------------------------------------------
 
@@ -1022,6 +1012,7 @@ CREATE TABLE `transaksi_detail` (
   `tanggal` date NOT NULL,
   `jam_mulai` time DEFAULT NULL,
   `durasi` int(11) NOT NULL,
+  `jumlah` int(11) NOT NULL,
   `jam_selesai` time DEFAULT NULL,
   `harga_jual` int(11) NOT NULL,
   `total` int(11) NOT NULL,
@@ -1032,17 +1023,12 @@ CREATE TABLE `transaksi_detail` (
 -- Dumping data for table `transaksi_detail`
 --
 
-INSERT INTO `transaksi_detail` (`id_transdet`, `trans_id`, `kamera_id`, `tanggal`, `jam_mulai`, `durasi`, `jam_selesai`, `harga_jual`, `total`, `created_at`) VALUES
-(1, 1, 1, '2023-01-03', '07:00:00', 1, '08:00:00', 100000, 100000, '2023-01-01 00:00:00'),
-(2, 2, 1, '2023-01-03', '08:00:00', 1, '09:00:00', 100000, 100000, '2023-01-01 00:00:00'),
-(5, 4, 1, '2023-01-03', '22:00:00', 1, '23:00:00', 100000, 100000, '2023-01-01 00:00:00'),
-(6, 4, 2, '2023-01-03', '21:00:00', 1, '22:00:00', 150000, 150000, '2023-01-01 00:00:00'),
-(13, 10, 6, '2023-02-21', '19:00:00', 1, '20:00:00', 110, 110, '2023-02-21 20:59:57'),
-(16, 12, 1, '2023-09-07', '07:00:00', 1, '08:00:00', 90000, 90000, '2023-09-07 22:23:23'),
-(17, 13, 6, '2023-09-08', '06:00:00', 1, '07:00:00', 110000, 110000, '2023-09-08 07:19:59'),
-(18, 14, 6, '2023-09-09', '07:00:00', 1, '08:00:00', 110000, 110000, '2023-09-08 08:13:53'),
-(19, 15, 1, '2023-09-09', '07:00:00', 1, '08:00:00', 90000, 90000, '2023-09-08 08:54:23'),
-(20, 16, 12, '2023-09-08', '11:00:00', 2, '13:00:00', 10000, 20000, '2023-09-08 13:28:03');
+INSERT INTO `transaksi_detail` (`id_transdet`, `trans_id`, `kamera_id`, `tanggal`, `jam_mulai`, `durasi`, `jumlah`, `jam_selesai`, `harga_jual`, `total`, `created_at`) VALUES
+(45, 38, 20, '2023-10-28', '06:00:00', 3, 2, '09:00:00', 10000, 60000, '2023-10-28 22:04:34'),
+(46, 39, 20, '2023-10-28', '09:00:00', 2, 2, '11:00:00', 10000, 40000, '2023-10-28 22:07:43'),
+(47, 40, 20, '2023-10-28', '15:00:00', 2, 2, '17:00:00', 10000, 40000, '2023-10-28 22:15:01'),
+(48, 41, 20, '2023-10-28', '22:00:00', 4, 2, '26:00:00', 10000, 80000, '2023-10-28 22:44:06'),
+(49, 42, 20, '2023-10-28', '14:00:00', 2, 2, '16:00:00', 10000, 40000, '2023-10-28 23:43:47');
 
 -- --------------------------------------------------------
 
@@ -1080,12 +1066,12 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `username`, `password`, `email`, `phone`, `provinsi`, `kota`, `address`, `usertype`, `active`, `photo`, `photo_type`, `ip_address`, `salt`, `activation_code`, `forgotten_password_code`, `forgotten_password_time`, `remember_code`, `last_login`, `created_on`, `modified`) VALUES
-(1, 'SuperAdmin', 'superadmin', '$2y$08$TWMdtdacqPE5yEz9n1LwFuhEVmiDTTsupl12M45tCQihzF1tu2N/6', 'superadmin@gmail.com', '081228289766', 5, 419, 'asdasdasdsa', 1, 1, 'superadmin', '.png', '::1', NULL, 'c6ad242e6fd3de875568c7de5ba23af4a24137ef', 'tHafW45duPzrU3oWR0AVuO48b26088a3cd65edc4', 1621246176, NULL, 1694183447, 2147483647, '2023-09-08 21:30:47'),
+(1, 'SuperAdmin', 'superadmin', '$2y$08$TWMdtdacqPE5yEz9n1LwFuhEVmiDTTsupl12M45tCQihzF1tu2N/6', 'superadmin@gmail.com', '081228289766', 5, 419, 'asdasdasdsa', 1, 1, 'superadmin', '.png', '::1', NULL, 'c6ad242e6fd3de875568c7de5ba23af4a24137ef', 'tHafW45duPzrU3oWR0AVuO48b26088a3cd65edc4', 1621246176, NULL, 1698670780, 2147483647, '2023-10-30 19:59:40'),
 (2, 'Admin', 'administrator', '$2y$08$rnCngWyQhFLdVJijctNDKuwJZ8o9VfcSsZ9IM9XN71ugxIpQFeCWe', 'administrator@gmail.com', '08124124', NULL, NULL, 'kaldjlas', 2, 1, 'admin20180424102408', '.jpeg', '::1', NULL, NULL, NULL, NULL, NULL, 1694183410, 1524551716, '2023-09-08 21:30:10'),
 (3, 'Batistuta', 'batistuta', '$2y$08$.5EYrM8S8Up0LcpFiEmjauyPVdWOmylLZ.MqM0zBKyDVKniwdVbYi', 'batistuta@gmail.com', '0812412414', 33, 327, 'Jl. Skdlajsdlasjkdl', 4, 1, NULL, NULL, '127.0.0.1', NULL, NULL, NULL, NULL, NULL, 1674204341, 1528634033, '2023-01-20 15:45:41'),
 (4, 'User Premium', 'userpremium', '$2y$08$Wv3MA.DnwTNzBeF62o9neuSXeVdIA/bjlxOzSxtD6DtgStEBn//s.', 'userpremium@gmail.com', '0812412412', 3, 106, 'kaljdklasjdkl', 3, 1, NULL, NULL, '::1', NULL, NULL, NULL, NULL, NULL, 1674399384, 1531807819, '2023-01-22 21:56:24'),
 (5, 'testuser', 'testuser', '$2y$08$aE/NW/R8B1LKCDBWI.X35eLabz./f6IxedeHYcEm4DLrQiILrWn3a', 'testuser@gmail.com', '080654825462', 5, 419, 'Yogyakarta', 4, 1, NULL, NULL, '::1', NULL, NULL, NULL, NULL, NULL, 1676972293, 1676972272, '2023-02-21 16:38:13'),
-(6, 'userbiasa', 'userbiasa', '$2y$08$9FPuJ/ivS1nEh28sBtlOoe5N/QcpiDnLxPa1t4Vy7ScUMDJ/uHOSq', 'userbiasa@gmail.com', '080654825462', 5, 39, 'Yogyakarta', 4, 1, NULL, NULL, '::1', NULL, NULL, NULL, NULL, NULL, 1694154478, 1676973644, '2023-09-08 13:27:58');
+(6, 'userbiasa', 'userbiasa', '$2y$08$9FPuJ/ivS1nEh28sBtlOoe5N/QcpiDnLxPa1t4Vy7ScUMDJ/uHOSq', 'userbiasa@gmail.com', '080654825462', 5, 39, 'Yogyakarta', 4, 1, NULL, NULL, '::1', NULL, NULL, NULL, NULL, NULL, 1698511419, 1676973644, '2023-10-28 23:43:39');
 
 -- --------------------------------------------------------
 
@@ -1280,7 +1266,7 @@ ALTER TABLE `jam`
 -- AUTO_INCREMENT for table `kamera`
 --
 ALTER TABLE `kamera`
-  MODIFY `id_kamera` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id_kamera` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT for table `kategori`
@@ -1298,7 +1284,7 @@ ALTER TABLE `kontak`
 -- AUTO_INCREMENT for table `login_attempts`
 --
 ALTER TABLE `login_attempts`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `page`
@@ -1322,13 +1308,13 @@ ALTER TABLE `subscriber`
 -- AUTO_INCREMENT for table `transaksi`
 --
 ALTER TABLE `transaksi`
-  MODIFY `id_trans` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id_trans` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
 
 --
 -- AUTO_INCREMENT for table `transaksi_detail`
 --
 ALTER TABLE `transaksi_detail`
-  MODIFY `id_transdet` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id_transdet` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
 
 --
 -- AUTO_INCREMENT for table `users`
