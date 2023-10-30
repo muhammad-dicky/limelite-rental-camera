@@ -29,6 +29,9 @@
                   <div class="form-group"><label>Harga Per Jam</label>
                     <?php echo form_input($harga, $kamera->harga);?>
                   </div>
+                  <div class="form-group"><label>Stok</label>
+                    <?php echo form_input($jumlah, $kamera->jumlah);?>
+                  </div>
                   <div class="form-group"><label>Foto Sebelumnya</label><br>
                     <img src="<?php echo base_url('assets/images/kamera/'.$kamera->foto.'') ?>" width="300px" class="img-responsive"/>
                   </div>

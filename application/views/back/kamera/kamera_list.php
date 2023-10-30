@@ -48,7 +48,7 @@
                           <td style="text-align: center"><?php echo $data->created_by ?></td>
                           <td style="text-align: center"><?php echo $data->created_at ?></td>
 
-                          <td style="text-align: center"><?php echo $data->stok ?></td>
+                          <td style="text-align: center"><?php echo $data->jumlah ?></td>
 
                           <td style="text-align: center"><?php echo $data->modified_by ?></td>
                           <td style="text-align: center"><?php echo $data->modified_at ?></td>
