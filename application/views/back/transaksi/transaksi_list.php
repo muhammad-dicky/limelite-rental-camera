@@ -52,7 +52,21 @@
       									<td style="text-align:center"><?php echo number_format($data->grand_total) ?></a></td>
 
 
-      									<td style="text-align:center">
+                        <td style="text-align:center">
+  <?php if ($data->status == '0') { ?>
+    <button id="belumChekout" type="button" name="status" class="btn btn-primary"><i class="fa fa-ban"></i> BELUM CHECKOUT</button>
+  <?php } elseif ($data->status == '1') { ?>
+    <button id="belumLunas" type="button" name="status" class="btn btn-warning"><i class="fa fa-minus-circle"></i> BELUM LUNAS</button>
+  <?php } elseif ($data->status == '2') { ?>
+    <button id="lunas" type="button" name="status" class="btn btn-success"><i class="fa fa-check"></i> LUNAS</button>
+  <?php } elseif ($data->status == '3') { ?>
+    <button id="expired" type="button" name="status" class="btn btn-danger"><i class="fa fa-remove"></i> EXPIRED</button>
+  <?php } elseif ($data->status == '4') { ?>
+    <button id="dikembalikan" type="button" name="status" class="btn btn-success"><i class="fa fa-check"></i> DIKEMBALIKAN</button>
+  <?php } ?>
+</td>
+
+      									<!-- <td style="text-align:center">
                           <?php if($data->status == '0'){ ?>
       		                  <button id="statusButton" type="button" name="status" class="btn btn-primary"><i class="fa fa-ban"></i> BELUM CHECKOUT</button>
       		                <?php } elseif($data->status == '1'){ ?>
@@ -64,25 +78,26 @@
       		                <?php } elseif($data->status == '4'){ ?>
       		                  <button id="statusButton" type="button" name="status" class="btn btn-success"><i class="fa fa-check"></i> DIKEMBALIKAN</button>
       		                <?php } ?>
-      									</td>
+      									</td> -->
 
 
 
                         
 
       									<td style="text-align:center">
-                          <?php if($data->status != '2'){ ?>
-                            <a href="<?php echo base_url('admin/transaksi/set_lunas/').$data->id_trans ?>">
-                              <button id="setLunasButton" name="update" class="btn btn-success" ><i class="fa fa-check"></i> Set Lunas</button>
-                            </a>
-                          <?php } ?>
 
+                        
+                        <?php if ($data->status == '1') { ?>
+  <a href="<?php echo base_url('admin/transaksi/set_lunas/') . $data->id_trans ?>">
+    <button id="setLunasButton" name="update" class="btn btn-success"><i class="fa fa-check"></i> Set Lunas</button>
+  </a>
+<?php } ?>
 
-                          <?php if($data->status != '4'){ ?>
-                            <a href="<?php echo base_url('admin/transaksi/set_pengembalian/').$data->id_trans ?>">
-                              <button id="setPengembalianButton" name="update" class="btn btn-success" "><i class="fa fa-check"></i> Set Pengembalian</button>
-                            </a>
-                          <?php } ?>
+<?php if ($data->status == '2') { ?>
+  <a href="<?php echo base_url('admin/transaksi/set_pengembalian/') . $data->id_trans ?>">
+    <button id="setPengembalianButton" name="update" class="btn btn-success"><i class="fa fa-check"></i> Set Pengembalian</button>
+  </a>
+<?php } ?>
 
 
                           <a href="<?php echo base_url('admin/transaksi/detail/').$data->id_trans ?>">
@@ -125,7 +140,39 @@
   </script>
 
 
-<script>
+<!-- <script>
+  window.onload = function() {
+    var tabel = document.getElementById('datatable');
+    var baris = tabel.getElementsByTagName('tr');
+
+    for (var i = 1; i < baris.length; i++) {
+      // Dapatkan status dari atribut data-status pada setiap baris
+      var status = baris[i].querySelector('td').getAttribute('data-status');
+
+      // Dapatkan tombol "Set Lunas" dan "Set Pengembalian" untuk setiap baris
+      var setLunasButton = baris[i].querySelector('.setLunasButton');
+      var setPengembalianButton = baris[i].querySelector('.setPengembalianButton');
+
+      // Berdasarkan status, atur tampilan tombol "Set Lunas" dan "Set Pengembalian" untuk setiap baris
+      if (status == 1) {
+        setLunasButton.style.display = 'block';
+        setPengembalianButton.style.display = 'none';
+      } else if (status == 2) {
+        setLunasButton.style.display = 'none';
+        setPengembalianButton.style.display = 'block';
+      } else if (status == 4) {
+        setLunasButton.style.display = 'none';
+        setPengembalianButton.style.display = 'none';
+      } else {
+        setLunasButton.style.display = 'block';
+        setPengembalianButton.style.display = 'none';
+      }
+      console.log({status})
+    }
+  }
+</script> -->
+
+<!-- <script>
   // Tangkap tombol "Set Lunas" dan "Set Pengembalian" dengan JavaScript
   var setLunasButton = document.getElementById('setLunasButton');
   var setPengembalianButton = document.getElementById('setPengembalianButton');
@@ -133,27 +180,18 @@
 
   // Ambil status dari tombol "statusButton"
   var status = <?php echo $data->status; ?>;
- 
 
   // Berdasarkan status, atur tampilan tombol "Set Lunas" dan "Set Pengembalian"
   if (status == 1) {
-    // BELUM LUNAS
     // Jika status adalah 1, tampilkan tombol "Set Lunas" dan sembunyikan tombol "Set Pengembalian"
     setLunasButton.style.display = 'block';
     setPengembalianButton.style.display = 'none';
   } else if (status == 2) {
-    // LUNAS
     // Jika status adalah 2, sembunyikan tombol "Set Lunas" dan tampilkan tombol "Set Pengembalian"
     setLunasButton.style.display = 'none';
     setPengembalianButton.style.display = 'block';
   }
-  else if (status == 3){
-    // EXPIRED
-    setLunasButton.style.display = 'none';
-    setPengembalianButton.style.display = 'none';
-  }
   else if (status == 4){
-    // DIKEMBALIKAN
     setLunasButton.style.display = 'none';
     setPengembalianButton.style.display = 'none';
   }
@@ -164,10 +202,11 @@
   // }
   else {
     // Untuk status lainnya, sembunyikan kedua tombol tersebut
-    setLunasButton.style.display = 'none';
+    setLunasButton.style.display = 'block';
     setPengembalianButton.style.display = 'none';
   }
-</script>
+</script> -->
+
 
 
 

@@ -44,6 +44,14 @@ class Kamera extends CI_Controller
       'value' => $this->form_validation->set_value('harga'),
       'required'    => '',
     );
+    $this->data['jumlah'] = array(
+      'name'  => 'jumlah',
+      'id'    => 'jumlah',
+      'type'  => 'number',
+      'class' => 'form-control',
+      'value' => $this->form_validation->set_value('jumlah'),
+      'required'    => '',
+    );
 
     $this->load->view('back/kamera/kamera_add', $this->data);
   }
@@ -101,6 +109,7 @@ class Kamera extends CI_Controller
             $data = array(
               'nama_kamera'   => $this->input->post('nama_kamera'),
               'harga'           => $this->input->post('harga'),
+              'jumlah'           => $this->input->post('jumlah'),
               'foto'            => $nmfile.$foto['file_ext'],
               'created_by'      => $this->session->userdata('username')
             );
@@ -120,6 +129,7 @@ class Kamera extends CI_Controller
         $data = array(
           'nama_kamera'   => $this->input->post('nama_kamera'),
           'harga'           => $this->input->post('harga'),
+          'jumlah'           => $this->input->post('jumlah'),
           'created_by'      => $this->session->userdata('username')
         );
 
@@ -162,6 +172,13 @@ class Kamera extends CI_Controller
       $this->data['harga'] = array(
         'name'  => 'harga',
         'id'    => 'harga',
+        'type'  => 'number',
+        'class' => 'form-control',
+        'required'    => '',
+      );
+      $this->data['jumlah'] = array(
+        'name'  => 'jumlah',
+        'id'    => 'jumlah',
         'type'  => 'number',
         'class' => 'form-control',
         'required'    => '',
@@ -243,6 +260,7 @@ class Kamera extends CI_Controller
               $data = array(
                 'nama_kamera'   => $this->input->post('nama_kamera'),
                 'harga'           => $this->input->post('harga'),
+                'jumlah'           => $this->input->post('jumlah'),
                 'foto'            => $nmfile.$foto['file_ext'],
                 'modified_by'     => $this->session->userdata('username')
               );
@@ -261,6 +279,7 @@ class Kamera extends CI_Controller
             $data = array(
               'nama_kamera'   => $this->input->post('nama_kamera'),
               'harga'           => $this->input->post('harga'),
+              'jumlah'           => $this->input->post('jumlah'),
               'modified_by'     => $this->session->userdata('username')
             );
 
